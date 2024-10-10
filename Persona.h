@@ -14,6 +14,7 @@ protected:
 public:
    
     Persona(string nom, string i, string tel, string mail);
+    Persona();
         
 
         string getNombre();
@@ -25,6 +26,7 @@ public:
         void setNombre(string nom);
         void setId(string i);
         void setEmail(string mail);
+        void setTel(string tel);
 };
 
 #endif

@@ -127,10 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="listaProf.h" />
+    <ClInclude Include="nodoProf.h" />
     <ClInclude Include="Persona.h" />
+    <ClInclude Include="Profesor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="listaProf.cpp" />
+    <ClCompile Include="nodoProf.cpp" />
     <ClCompile Include="Persona.cpp" />
+    <ClCompile Include="Profesor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
