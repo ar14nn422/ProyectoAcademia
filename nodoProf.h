@@ -6,6 +6,7 @@ private:
 	nodoProf* sig;
 public:
 	nodoProf(Profesor*, nodoProf*);
+	nodoProf();
 	Profesor* getProfe();
 	nodoProf* getSig();
 	void setProfe(Profesor*);

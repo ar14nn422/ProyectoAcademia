@@ -6,6 +6,12 @@ nodoProf::nodoProf(Profesor* pr, nodoProf* sg)
 	sig = sg;
 }
 
+nodoProf::nodoProf()
+{
+	profe = nullptr;
+	sig = nullptr;
+}
+
 Profesor* nodoProf::getProfe()
 {
 	return profe;

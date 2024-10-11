@@ -1,3 +1,5 @@
+#ifndef PROFESOR_H
+#define PROFESOR_H
 #include "Persona.h"
 #include <sstream>
 class Profesor : public Persona {
@@ -10,3 +12,6 @@ public:
 	void setGradoA(string);
 	string mostrarProfe();
 };
+#endif // !PROFESOR_H
+
+
