@@ -1,12 +1,7 @@
 #include "Estudiante.h"
 #include "sstream"
-
-Estudiante::Estudiante(string nom, string id, string num, string email, string esp)
+Estudiante::Estudiante(string nom, string id, string num, string email, string esp):Persona(nom, id, num, email)
 {
-	setNombre(nom);
-	setId(id);
-	setTel(num);
-	setEmail(email);
 	especialidad = esp;
 }
 

@@ -1,9 +1,6 @@
 #include "Profesor.h"
-Profesor::Profesor(string nombre, string id, string num, string email, string gA) {
-	setNombre(nombre);
-	setId(id);
-	setTel(num);
-	setEmail(email);
+Profesor::Profesor(string nombre, string id, string num, string email, string gA):Persona(nombre, id, num, email) {
+
 	gradoAcademico = gA;
 }
 Profesor::Profesor() {
