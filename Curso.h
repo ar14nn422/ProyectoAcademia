@@ -7,7 +7,8 @@ private:
 	string id;
 	string horas;	
 	string precio;
-	bool estado;	
+	bool estado;
+	Curso* siguiente;
 
 public:
 	Curso(string, string, string, string, bool);
@@ -18,11 +19,13 @@ public:
 	void setHoras(string);
 	void setPrecio(string);
 	void setEstado(bool);
+	void setsiguiente(Curso*);
 	string getNombre();
 	string getId();
 	string getHoras();
 	string getPrecio();
 	bool getEstado();
+	Curso* getsiguiente();
 	string mostrarCurso();
 
 

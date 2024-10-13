@@ -1,5 +1,6 @@
 #include "Estudiante.h"
 #include "sstream"
+
 Estudiante::Estudiante(string nom, string id, string num, string email, string esp)
 {
 	setNombre(nom);

@@ -7,7 +7,7 @@ Curso::Curso(string nom, string i, string hrs, string prec, bool est)
 	horas = hrs;
 	precio = prec;
 	estado = est;
-
+	siguiente(nullptr);
 }
 
 Curso::Curso()
@@ -17,6 +17,7 @@ Curso::Curso()
 	horas = " ";
 	precio = " ";
 	estado = true;
+	siguiente(nullptr);
 }
 
 Curso::~Curso()
@@ -46,6 +47,14 @@ void Curso::setPrecio(string prec)
 void Curso::setEstado(bool est)
 {
 	estado = est;
+}
+
+void Curso::setsiguiente(Curso * cur) {
+	siguiente = cur;
+}
+
+Curso * Curso::getsiguiente() {
+	return siguiente;
 }
 
 string Curso::getNombre()
