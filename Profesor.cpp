@@ -25,7 +25,7 @@ string Profesor::mostrarProfe()
 	s << "Id:" << getId() << endl;
 	s << "Numero telefonico:" << getTelefono() << endl;
 	s << "Correo:" << getEmail() << endl;
-	s << "Grado academico:" << getGradoA() << endl;
+	s << "Grado academico:" << getGradoA()<< endl;
 	return s.str();
 }
 ;
