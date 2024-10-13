@@ -1,3 +1,5 @@
+#ifndef CURSO_H
+#define CURSO_H
 #include <iostream>
 using namespace std;
 class Curso
@@ -30,4 +32,7 @@ public:
 
 
 };
+#endif // !CURSO_H
+
+
 

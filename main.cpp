@@ -2,6 +2,8 @@
 #include "Profesor.h"
 #include "listaEstu.h"
 #include "Estudiante.h"
+#include "Curso.h"
+#include "listaCursos.h"
 #include <iostream>
 int main() {
 	Profesor* p1 = new Profesor("Mario", "742834u2874", "84845157", "mario@jfsj", "Bachiller");
@@ -9,6 +11,9 @@ int main() {
 	listaProf* l1=new listaProf();
 	Estudiante* e1 = new Estudiante("Mar", "475834", "87646467", "mar@", "Dibujo");
 	listaEstu* l2 = new listaEstu();
+	Curso* c1 = new Curso("Mate", "64747", "12-1", "20000", true);
+	listaCursos* l3 = new listaCursos();
+	l3->insertarCurso(c1);
 	l1->insertarProfesor(p1);
 	l1->insertarProfesor(p2);
 	l2->insertarEstu(e1);
@@ -16,6 +21,7 @@ int main() {
 	cout<<l1->mostrarLP();
 	cout << "Lista de estudiantes:" << endl;
 	cout<<l2->mostrarLE();
-
+	cout << "Lista de cursos:" << endl;
+	cout << l3->mostrarLC();
 	return 0;
 }
