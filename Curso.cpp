@@ -7,7 +7,7 @@ Curso::Curso(string nom, string i, string hrs, string prec, bool est)
 	horas = hrs;
 	precio = prec;
 	estado = est;
-	siguiente(nullptr);
+	siguiente=nullptr;
 }
 
 Curso::Curso()
@@ -17,7 +17,7 @@ Curso::Curso()
 	horas = " ";
 	precio = " ";
 	estado = true;
-	siguiente(nullptr);
+	siguiente=nullptr;
 }
 
 Curso::~Curso()
