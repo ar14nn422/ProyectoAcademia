@@ -1,4 +1,3 @@
-
 #ifndef HORARIO_H
 #define HORARIO_H
 
@@ -24,9 +23,6 @@ public:
     string getHoraFin();
     string getDiaSemana();
     string mostrarHorario();
-
-
-
 
 
 };

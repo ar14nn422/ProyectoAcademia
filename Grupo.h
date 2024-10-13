@@ -1,4 +1,3 @@
-
 #ifndef GRUPO_H
 #define GRUPO_H
 #include "Estudiante.h"
@@ -11,7 +10,7 @@
 
 
 class Grupo {
-    private:
+private:
     int numeroGrupo;
     int capacidad;
     int cantidadAlumnos;

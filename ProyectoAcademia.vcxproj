@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClInclude Include="Curso.h" />
     <ClInclude Include="Estudiante.h" />
+    <ClInclude Include="Grupo.h" />
+    <ClInclude Include="Horario.h" />
     <ClInclude Include="listaCursos.h" />
     <ClInclude Include="listaEstu.h" />
     <ClInclude Include="listaProf.h" />
@@ -140,6 +142,8 @@
   <ItemGroup>
     <ClCompile Include="Curso.cpp" />
     <ClCompile Include="Estudiante.cpp" />
+    <ClCompile Include="Grupo.cpp" />
+    <ClCompile Include="Horario.cpp" />
     <ClCompile Include="listaCursos.cpp" />
     <ClCompile Include="listaEstu.cpp" />
     <ClCompile Include="listaProf.cpp" />

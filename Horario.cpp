@@ -1,4 +1,3 @@
-
 #include "Horario.h"
 
 Horario::Horario(string inicio, string fin, string dia) {

@@ -1,5 +1,3 @@
-
-
 #include "Grupo.h"
 Grupo::Grupo(int num, int cap, Horario hor, Curso* cur, Profesor* prof) {
     numeroGrupo = num;
@@ -30,7 +28,7 @@ Horario Grupo::getHorario() {
     return  horario;
 }
 
-Profesor * Grupo::getProfesor() {
+Profesor* Grupo::getProfesor() {
     return profesor;
 }
 
@@ -47,12 +45,13 @@ void Grupo::decrementarAlumnos() {
         cantidadAlumnos--;
 }
 
-bool Grupo::matricularEstudiante(Estudiante *estudiante) {
+bool Grupo::matricularEstudiante(Estudiante* estudiante) {
     if (cantidadAlumnos < capacidad) {
         nodoEstu* nuevoNodo = new nodoEstu(estudiante, nullptr);
         if (listaEstudiantes == nullptr) {
             listaEstudiantes = nuevoNodo;
-        } else {
+        }
+        else {
             nodoEstu* temp = listaEstudiantes;
             while (temp->getSig() != nullptr) {
                 temp = temp->getSig();
@@ -73,10 +72,10 @@ void Grupo::mostrarEstudiantes() {
     }
 }
 
-Grupo * Grupo::getSiguiente() {
+Grupo* Grupo::getSiguiente() {
     return siguiente;
 }
 
-void Grupo::setSiguiente(Grupo *siguiente) {
+void Grupo::setSiguiente(Grupo* siguiente) {
     siguiente = siguiente;
 }
