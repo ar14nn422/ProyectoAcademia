@@ -36,6 +36,9 @@
     <ClInclude Include="listaEstu.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Curso.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Persona.cpp">
@@ -60,6 +63,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="listaEstu.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Curso.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
