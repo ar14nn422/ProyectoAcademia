@@ -10,6 +10,22 @@ Grupo::Grupo(int num, int cap, Horario hor, Curso* cur, Profesor* prof) {
     siguiente = nullptr;
 }
 
+Grupo::Grupo()
+{
+    numeroGrupo = 0;
+    capacidad = 0;
+    cantidadAlumnos = 0;
+    curso = nullptr;
+    profesor = nullptr;
+    listaEstudiantes = nullptr;
+    siguiente = nullptr;
+
+}
+
+Grupo::~Grupo()
+{
+    
+}
 
 
 int Grupo::getNumeroGrupo() {
@@ -28,9 +44,16 @@ Horario Grupo::getHorario() {
     return  horario;
 }
 
+Curso* Grupo::getCurso()
+{
+    return curso;
+}
+
 Profesor* Grupo::getProfesor() {
     return profesor;
 }
+
+
 
 bool Grupo::incrementarAlumnos() {
     if (cantidadAlumnos < capacidad) {
@@ -76,6 +99,20 @@ Grupo* Grupo::getSiguiente() {
     return siguiente;
 }
 
-void Grupo::setSiguiente(Grupo* siguiente) {
-    siguiente = siguiente;
+void Grupo::setSiguiente(Grupo* sig) {
+    siguiente = sig;
+}
+
+string Grupo::mostrarGrupo()
+{
+    stringstream s;
+    s << "Numero de grupo:" << numeroGrupo << endl;
+    s << "Capacidad:" << capacidad << endl;
+    s << "Cantidad de alumnos:" << cantidadAlumnos << endl;
+    s << "Horario:" << horario.mostrarHorario() << endl;
+    s << "Profesor" << profesor->mostrarProfe() << endl;
+    s << "Curso:" << curso->mostrarCurso() << endl;
+    s << "Estudiantes:" << endl<<endl;
+    s<<listaEstudiantes->mostrarNodoE();
+    return s.str();
 }

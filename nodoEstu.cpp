@@ -1,5 +1,5 @@
 #include "nodoEstu.h"
-
+#include <iostream>
 nodoEstu::nodoEstu(Estudiante* est, nodoEstu* sg)
 {
 	estu = est;
@@ -11,7 +11,6 @@ nodoEstu::nodoEstu()
 	estu = nullptr;
 	sig = nullptr;
 }
-
 
 
 void nodoEstu::setEstu(Estudiante* est)
@@ -26,6 +25,7 @@ void nodoEstu::setSig(nodoEstu* sg)
 
 Estudiante* nodoEstu::getEstu()
 {
+
 	return estu;
 }
 

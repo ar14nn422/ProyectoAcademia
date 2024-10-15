@@ -1,3 +1,5 @@
+#ifndef NODOESTUDIANTE_H
+#define NODOESTUDIANTE_H
 #include "Estudiante.h"
 class nodoEstu
 {
@@ -14,4 +16,7 @@ public:
 	string mostrarNodoE();	
 	~nodoEstu();
 };
+#endif // !NODOESTUDIANTE_H
+
+
 

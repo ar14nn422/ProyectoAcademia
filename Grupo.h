@@ -4,10 +4,8 @@
 #include "Profesor.h"
 #include "Horario.h"
 #include <iostream>
-
 #include "Curso.h"
 #include "nodoEstu.h"
-
 
 class Grupo {
 private:
@@ -31,14 +29,15 @@ public:
     Curso* getCurso();
     Profesor* getProfesor();
 
+
     bool incrementarAlumnos();
     void decrementarAlumnos();
     bool matricularEstudiante(Estudiante* estudiante);
     void mostrarEstudiantes();
 
     Grupo* getSiguiente();
-    void setSiguiente(Grupo* siguiente);
-
+    void setSiguiente(Grupo* sig);
+    string mostrarGrupo();
 
 };
 
