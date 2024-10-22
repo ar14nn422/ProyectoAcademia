@@ -1,3 +1,5 @@
+#ifndef LISTAGRUPOS_H
+#define LISTAGRUPOS_H
 #include "Grupo.h"
 class listaGrupos
 {
@@ -11,4 +13,7 @@ public:
 	void insertarGrupo(Grupo*);
 	string mostrarLG();
 };
+#endif // !LISTAGRUPOS_H
+
+
 

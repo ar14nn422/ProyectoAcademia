@@ -1,3 +1,5 @@
+#ifndef NODOESTU_H
+#define NODOESTU_H
 #include "nodoEstu.h"
 class listaEstu
 {
@@ -11,4 +13,7 @@ public:
 	void insertarEstu(Estudiante*);
 	string mostrarLE();
 };
+#endif // !NODOESTU_H
+
+
 

@@ -22,7 +22,7 @@ Grupo::Grupo()
 
 }
 
-Grupo::~Grupo()
+Grupo::~Grupo()//
 {
     
 }
@@ -51,6 +51,11 @@ Curso* Grupo::getCurso()
 
 Profesor* Grupo::getProfesor() {
     return profesor;
+}
+
+nodoEstu* Grupo::getListaEstu()
+{
+    return listaEstudiantes;
 }
 
 
@@ -105,13 +110,13 @@ void Grupo::setSiguiente(Grupo* sig) {
 
 string Grupo::mostrarGrupo()
 {
-    stringstream s;
+    stringstream s;    
+    s << "Curso:" << curso->mostrarCurso() << endl;
     s << "Numero de grupo:" << numeroGrupo << endl;
     s << "Capacidad:" << capacidad << endl;
     s << "Cantidad de alumnos:" << cantidadAlumnos << endl;
     s << "Horario:" << horario.mostrarHorario() << endl;
     s << "Profesor" << profesor->mostrarProfe() << endl;
-    s << "Curso:" << curso->mostrarCurso() << endl;
     s << "Estudiantes:" << endl<<endl;
     s<<listaEstudiantes->mostrarNodoE();
     return s.str();

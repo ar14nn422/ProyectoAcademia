@@ -20,9 +20,9 @@ string Profesor::mostrarProfe()
 	stringstream s;
 	s << "Nombre:" << getNombre() << endl;
 	s << "Id:" << getId() << endl;
-	s << "Numero telefonico:" << getTelefono() << endl;
+	/*s<< "Numero telefonico:" << getTelefono() << endl;
 	s << "Correo:" << getEmail() << endl;
-	s << "Grado academico:" << getGradoA()<< endl;
+	s << "Grado academico:" << getGradoA()<< endl;*/ 
 	return s.str();
 }
 ;

@@ -1,3 +1,5 @@
+#ifndef LISTACURSOS_H
+#define LISTACURSOS_H
 #include "Curso.h"
 class listaCursos
 {
@@ -11,4 +13,7 @@ public:
 	void insertarCurso(Curso*);
 	string mostrarLC();
 };
+#endif // !LISTACURSOS_H
+
+
 

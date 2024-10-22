@@ -21,21 +21,31 @@ listaGrupos::~listaGrupos()
 	}
 }
 
-/*void listaGrupos::insertarGrupo(Grupo* grupo)
-{
-	Grupo* nuevo = new Grupo(grupo->getNumeroGrupo(), grupo->getCapacidad(), grupo->getHorario(), grupo->getCurso(), grupo->getProfesor());
 
-	if (primero == nullptr) {
-		primero = nuevo;
-	}
-	else {
-		actual = primero;
-		while (actual->getSiguiente() != nullptr) {
-			actual = actual->getSiguiente();
-		}
-		actual->setSiguiente(nuevo);
-	}
-}*/
+
+void listaGrupos::insertarGrupo(Grupo* grupo)
+{
+    Grupo* nuevo = new Grupo(grupo->getNumeroGrupo(), grupo->getCapacidad(), grupo->getHorario(), grupo->getCurso(), grupo->getProfesor());
+
+    nodoEstu* actualEstu = grupo->getListaEstu(); 
+    while (actualEstu != nullptr) {
+       
+        Estudiante* nuevoEstudiante = new Estudiante(*actualEstu->getEstu());
+        nuevo->matricularEstudiante(nuevoEstudiante);
+        actualEstu = actualEstu->getSig();
+    }
+
+    if (primero == nullptr) {
+        primero = nuevo;
+    }
+    else {
+        actual = primero;
+        while (actual->getSiguiente() != nullptr) {
+            actual = actual->getSiguiente();
+        }
+        actual->setSiguiente(nuevo);
+    }
+}
 
 string listaGrupos::mostrarLG()
 {

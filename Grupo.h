@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Curso.h"
 #include "nodoEstu.h"
+#include "listaEstu.h"
 
 class Grupo {
 private:
@@ -28,7 +29,7 @@ public:
     Horario getHorario();
     Curso* getCurso();
     Profesor* getProfesor();
-
+    nodoEstu* getListaEstu();
 
     bool incrementarAlumnos();
     void decrementarAlumnos();
