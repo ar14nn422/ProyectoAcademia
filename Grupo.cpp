@@ -92,12 +92,15 @@ bool Grupo::matricularEstudiante(Estudiante* estudiante) {
     return false;
 }
 
-void Grupo::mostrarEstudiantes() {
-    nodoEstu* temp = listaEstudiantes;
-    while (temp != nullptr) {
-        cout << temp->mostrarNodoE() << endl;
-        temp = temp->getSig();
+string Grupo::mostrarEstudiantes() {
+    stringstream s;
+    nodoEstu* actual = listaEstudiantes;
+    s << "Estudiantes matriculados en el grupo " << numeroGrupo << ":" << endl;
+    while (actual != nullptr) {
+        s << actual->getEstu()->getNombre() << endl;  // Mostrar el nombre del estudiante
+        actual = actual->getSig();  // Avanzar al siguiente estudiante
     }
+    return s.str();
 }
 
 Grupo* Grupo::getSiguiente() {
@@ -118,6 +121,6 @@ string Grupo::mostrarGrupo()
     s << "Horario:" << horario.mostrarHorario() << endl;
     s << "Profesor" << profesor->mostrarProfe() << endl;
     s << "Estudiantes:" << endl<<endl;
-    s<<listaEstudiantes->mostrarNodoE();
+    s<<mostrarEstudiantes();
     return s.str();
 }

@@ -34,7 +34,7 @@ public:
     bool incrementarAlumnos();
     void decrementarAlumnos();
     bool matricularEstudiante(Estudiante* estudiante);
-    void mostrarEstudiantes();
+    string mostrarEstudiantes();
 
     Grupo* getSiguiente();
     void setSiguiente(Grupo* sig);

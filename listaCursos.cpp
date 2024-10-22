@@ -43,7 +43,8 @@ string listaCursos::mostrarLC()
 	stringstream s;
 	actual = primero;
 	while (actual != nullptr) {
-		s << actual->mostrarCurso() << endl;
+		s << actual->mostrarCurso() << endl
+		  << "-----------------------------" << endl;
 		actual = actual->getsiguiente();
 	}
 	return s.str();

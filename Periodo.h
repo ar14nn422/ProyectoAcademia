@@ -1,3 +1,5 @@
+#ifndef PERIODO_H
+#define PERIODO_H
 #include "listaCursos.h"
 #include "listaGrupos.h"
 class Periodo
@@ -14,5 +16,9 @@ public:
 	void agregarCurso(Curso* nuevoCurso);
 	listaCursos* getlistaCursos();
 	string mostrarPeriodo();
+	string mostrarCursosP();
 };
+#endif // !PERIODO_H
+
+
 

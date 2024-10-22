@@ -35,9 +35,16 @@ string Periodo::mostrarPeriodo()
 	stringstream s;
 	s << "Periodo numero" << numPeriodo << endl
 		<< "Mes de inicio: " << mesInicio << endl
-		<< "Mes de finalizacion: " << mesFinal << endl
-		<< "Lista de cursos en este periodo: " << endl
-		<< cursos->mostrarLC() << endl;
+		<< "Mes de finalizacion: " << mesFinal << endl;
+	return s.str();
+}
+
+string Periodo::mostrarCursosP()
+{
+	stringstream s;
+	s << "Lista de cursos del periodo indicado" << endl
+		<< "-------------------------------------"<<endl
+	    << cursos->mostrarLC() << endl;
 	return s.str();
 }
 

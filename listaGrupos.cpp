@@ -52,7 +52,8 @@ string listaGrupos::mostrarLG()
 	stringstream s;
 	actual = primero;
 	while (actual != nullptr) {
-		s << actual->mostrarGrupo() << endl;
+        s << "---------------------------"<<endl
+		  << actual->mostrarGrupo() << endl;
 		actual = actual->getSiguiente();
 	}
 	return s.str();
