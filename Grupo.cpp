@@ -95,7 +95,7 @@ bool Grupo::matricularEstudiante(Estudiante* estudiante) {
 string Grupo::mostrarEstudiantes() {
     stringstream s;
     nodoEstu* actual = listaEstudiantes;
-    s << "Estudiantes matriculados en el grupo " << numeroGrupo << ":" << endl;
+    s << "Estudiantes matriculados en el grupo " << numeroGrupo << ":"<< endl;
     while (actual != nullptr) {
         s << actual->getEstu()->getNombre() << endl;  // Mostrar el nombre del estudiante
         actual = actual->getSig();  // Avanzar al siguiente estudiante
@@ -120,7 +120,6 @@ string Grupo::mostrarGrupo()
     s << "Cantidad de alumnos:" << cantidadAlumnos << endl;
     s << "Horario:" << horario.mostrarHorario() << endl;
     s << "Profesor" << profesor->mostrarProfe() << endl;
-    s << "Estudiantes:" << endl<<endl;
     s<<mostrarEstudiantes();
     return s.str();
 }

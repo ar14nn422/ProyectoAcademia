@@ -28,7 +28,7 @@ int main() {
 	Curso* c2 = new Curso("Español", "98083", "3horas", "20000", true);
 
 	Grupo* g1 = new Grupo(01, 30, h1, c1, p2);
-	Grupo* g2 = new Grupo(01, 30, h2, c1, p1);
+	Grupo* g2 = new Grupo(02, 30, h2, c1, p1);
 
 
 	listaGrupos* l4 = new listaGrupos();
