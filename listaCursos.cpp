@@ -5,12 +5,14 @@ listaCursos::listaCursos(Curso* act, Curso* prim)
 {
 	actual = act;
 	primero = prim;
+
 }
 
 listaCursos::listaCursos()
 {
 	actual = nullptr;
 	primero = nullptr;
+
 }
 
 listaCursos::~listaCursos()
@@ -21,6 +23,27 @@ listaCursos::~listaCursos()
 		delete actual;
 	}
 }
+
+Curso* listaCursos::getPrimero()
+{
+	return primero;
+}
+
+
+int listaCursos::cantidadCursos()
+{
+	int totalCursos = 0;
+	actual = primero; 
+
+	while (actual != nullptr) { 
+		totalCursos++;
+		actual = actual->getsiguiente(); 
+	}
+
+	return totalCursos;
+}
+
+
 
 void listaCursos::insertarCurso(Curso* curso)
 {

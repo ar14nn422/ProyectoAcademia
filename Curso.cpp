@@ -1,6 +1,6 @@
 #include "Curso.h"
 #include <sstream>
-Curso::Curso(string nom, string i, string hrs, string prec, bool est)
+Curso::Curso(string nom, string i, string hrs, int prec, bool est)
 {
 	nombre = nom;
 	id = i;
@@ -15,7 +15,7 @@ Curso::Curso()
 	nombre = " ";
 	id = " ";
 	horas = " ";
-	precio = " ";
+	precio = 0;
 	estado = true;
 	siguiente=nullptr;
 }
@@ -39,7 +39,7 @@ void Curso::setHoras(string hrs)
 	horas = hrs;
 }
 
-void Curso::setPrecio(string prec)
+void Curso::setPrecio(int prec)
 {
 	precio = prec;
 }
@@ -53,7 +53,7 @@ void Curso::setsiguiente(Curso * cur) {
 	siguiente = cur;
 }
 
-Curso * Curso::getsiguiente() {
+Curso* Curso::getsiguiente() {
 	return siguiente;
 }
 
@@ -72,7 +72,7 @@ string Curso::getHoras()
 	return horas;
 }
 
-string Curso::getPrecio()
+int Curso::getPrecio()
 {
 	return precio;
 }
@@ -89,6 +89,11 @@ string Curso::mostrarCurso()
 	s << "Id del curso:" << id << endl;
 	s << "Horas:" <<horas<< endl;
 	s << "Precio:" <<precio<< endl;
-	s << "Estado:" << estado << endl;
+	if (estado == true) {
+		s << "Estado: disponible" << endl;
+	}
+	else {
+		s << "Estado: no disponible" << endl;
+	}
 	return s.str();
 }

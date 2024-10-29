@@ -8,24 +8,24 @@ private:
 	string nombre;
 	string id;
 	string horas;	
-	string precio;
+	int precio;
 	bool estado;
 	Curso* siguiente;
 
 public:
-	Curso(string, string, string, string, bool);
+	Curso(string, string, string, int, bool);
 	Curso();
 	~Curso();
 	void setNombre(string);
 	void setId(string);
 	void setHoras(string);
-	void setPrecio(string);
+	void setPrecio(int);
 	void setEstado(bool);
 	void setsiguiente(Curso*);
 	string getNombre();
 	string getId();
 	string getHoras();
-	string getPrecio();
+	int getPrecio();
 	bool getEstado();
 	Curso* getsiguiente();
 	string mostrarCurso();
