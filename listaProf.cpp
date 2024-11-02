@@ -29,6 +29,18 @@ void listaProf::insertarProfesor(Profesor* profe)
 
 }
 
+Profesor* listaProf::buscarProfePorId(string idProfe)
+{
+	nodoProf* actual = primero;
+	while (actual != nullptr) {
+		if (actual->getProfe()->getId() == idProfe) {
+			return actual->getProfe();
+		}
+		actual = actual->getSig();
+	}
+	return nullptr;
+}
+
 string listaProf::mostrarLP()
 {
 	stringstream s;

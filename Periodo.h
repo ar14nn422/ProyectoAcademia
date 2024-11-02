@@ -13,7 +13,8 @@ public:
 	Periodo(int, string, string);
 	Periodo();
 	~Periodo();
-	void agregarCurso(Curso* nuevoCurso);
+	int getNumPeriodo();
+	void agregarCurso(Curso* );
 	listaCursos* getlistaCursos();
 	string mostrarPeriodo();
 	string mostrarCursosP();

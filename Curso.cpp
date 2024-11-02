@@ -82,6 +82,8 @@ bool Curso::getEstado()
 	return estado;
 }
 
+
+
 string Curso::mostrarCurso()
 {
 	stringstream s;

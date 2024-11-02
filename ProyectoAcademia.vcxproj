@@ -132,6 +132,7 @@
     <ClInclude Include="Factura.h" />
     <ClInclude Include="Grupo.h" />
     <ClInclude Include="Horario.h" />
+    <ClInclude Include="Interfaz.h" />
     <ClInclude Include="listaCursos.h" />
     <ClInclude Include="listaEstu.h" />
     <ClInclude Include="listaGrupos.h" />
@@ -142,8 +143,10 @@
     <ClInclude Include="nodoPeriodo.h" />
     <ClInclude Include="nodoProf.h" />
     <ClInclude Include="Periodo.h" />
+    <ClInclude Include="PersistenciaDatos.h" />
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Profesor.h" />
+    <ClInclude Include="SistemaAcademia.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Curso.cpp" />
@@ -162,8 +165,10 @@
     <ClCompile Include="nodoPeriodo.cpp" />
     <ClCompile Include="nodoProf.cpp" />
     <ClCompile Include="Periodo.cpp" />
+    <ClCompile Include="PersistenciaDatos.cpp" />
     <ClCompile Include="Persona.cpp" />
     <ClCompile Include="Profesor.cpp" />
+    <ClCompile Include="SistemaAcademia.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

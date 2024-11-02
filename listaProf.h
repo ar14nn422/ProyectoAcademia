@@ -8,6 +8,7 @@ public:
 	listaProf(nodoProf*, nodoProf*);
 	listaProf();
 	void insertarProfesor(Profesor*);
+	Profesor* buscarProfePorId(string);
 	string mostrarLP();
 	~listaProf();
 

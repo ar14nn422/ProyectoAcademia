@@ -15,6 +15,7 @@ public:
 	Curso* getPrimero();
 	int cantidadCursos();
 	void insertarCurso(Curso*);
+	Curso* buscarCursoPorId(string);
 	string mostrarLC();
 };
 #endif // !LISTACURSOS_H

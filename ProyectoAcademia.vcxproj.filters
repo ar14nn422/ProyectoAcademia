@@ -66,6 +66,15 @@
     <ClInclude Include="nodoPeriodo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="SistemaAcademia.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="PersistenciaDatos.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaz.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Persona.cpp">
@@ -120,6 +129,12 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="nodoPeriodo.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="PersistenciaDatos.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="SistemaAcademia.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

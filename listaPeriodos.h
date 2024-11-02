@@ -12,6 +12,7 @@ public:
 	void insertarPeriodos(Periodo*);
 	nodoPeriodo* getPrimero();
 	int contarCursos();
+	Periodo* buscarPeriodoPorNum(int);
 	string mostrarLP();
 	~listaPeriodos();
 

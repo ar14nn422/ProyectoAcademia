@@ -97,8 +97,8 @@ string Grupo::mostrarEstudiantes() {
     nodoEstu* actual = listaEstudiantes;
     s << "Estudiantes matriculados en el grupo " << numeroGrupo << ":"<< endl;
     while (actual != nullptr) {
-        s << actual->getEstu()->getNombre() << endl;  // Mostrar el nombre del estudiante
-        actual = actual->getSig();  // Avanzar al siguiente estudiante
+        s << actual->getEstu()->getNombre() << endl; 
+        actual = actual->getSig(); 
     }
     return s.str();
 }

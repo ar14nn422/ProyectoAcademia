@@ -20,6 +20,11 @@ Periodo::~Periodo()//
 {
 }
 
+int Periodo::getNumPeriodo()
+{
+	return numPeriodo;
+}
+
 void Periodo::agregarCurso(Curso* nuevoCurso)
 {
 	cursos->insertarCurso(nuevoCurso);

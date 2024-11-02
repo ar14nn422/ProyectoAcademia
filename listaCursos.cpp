@@ -61,6 +61,18 @@ void listaCursos::insertarCurso(Curso* curso)
 	}
 }
 
+Curso* listaCursos::buscarCursoPorId(string idCurso)
+{
+	actual = primero;
+	while (actual != nullptr) {
+		if (actual->getId() == idCurso) {
+			return actual;
+		}
+		actual = actual->getsiguiente();
+	}
+	return nullptr;
+}
+
 string listaCursos::mostrarLC()
 {
 	stringstream s;

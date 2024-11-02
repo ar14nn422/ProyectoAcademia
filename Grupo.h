@@ -1,12 +1,13 @@
 #ifndef GRUPO_H
 #define GRUPO_H
-#include "Estudiante.h"
-#include "Profesor.h"
-#include "Horario.h"
-#include <iostream>
-#include "Curso.h"
-#include "nodoEstu.h"
+
+
 #include "listaEstu.h"
+#include "Curso.h" 
+#include "Horario.h"
+#include "Profesor.h"
+#include "Estudiante.h"
+#include "nodoEstu.h"
 
 class Grupo {
 private:
@@ -19,7 +20,7 @@ private:
     Profesor* profesor;
     Grupo* siguiente;
 public:
-    Grupo(int num, int cap, Horario hor, Curso* cur, Profesor* prof);
+    Grupo(int , int , Horario , Curso* , Profesor* );
     Grupo();
     ~Grupo();
 
@@ -33,11 +34,11 @@ public:
 
     bool incrementarAlumnos();
     void decrementarAlumnos();
-    bool matricularEstudiante(Estudiante* estudiante);
+    bool matricularEstudiante(Estudiante*);
     string mostrarEstudiantes();
 
     Grupo* getSiguiente();
-    void setSiguiente(Grupo* sig);
+    void setSiguiente(Grupo*);
     string mostrarGrupo();
 
 };
