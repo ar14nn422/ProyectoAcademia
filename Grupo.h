@@ -36,6 +36,7 @@ public:
     void decrementarAlumnos();
     bool matricularEstudiante(Estudiante*);
     string mostrarEstudiantes();
+    bool asignarProfesor(Profesor*);
 
     Grupo* getSiguiente();
     void setSiguiente(Grupo*);

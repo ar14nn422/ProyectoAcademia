@@ -103,6 +103,17 @@ string Grupo::mostrarEstudiantes() {
     return s.str();
 }
 
+bool Grupo::asignarProfesor(Profesor* profesorAsign)
+{
+    if (profesor != nullptr) {
+        return false;
+    }
+    else {
+        profesor = profesorAsign;
+        return true;
+    }
+}
+
 Grupo* Grupo::getSiguiente() {
     return siguiente;
 }

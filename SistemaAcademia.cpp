@@ -123,7 +123,6 @@ void SistemaAcademia::subMenuAdministracion()
             cin >> mFinal;
             Periodo* per = new Periodo(num, mInicio, mFinal);
             listaPer->insertarPeriodos(per);
-            cout << listaPer->mostrarLP();
             system("pause");
         }
            // if (la cantidad de periodos es mayor a 4 mensaje que diga que ya no puede ingresar mas  );
@@ -179,21 +178,29 @@ void SistemaAcademia::subMenuAdministracion()
 
             if (curso && periodo && curso->getEstado()==true) {
                     Horario horario(dia, horaInicio, horaFin);
-                    Grupo* grupo = new Grupo(numG,capacidad,horario,curso,nullptr);
+                    Grupo* grupo = new Grupo(numG,capacidad,horario,curso,nullptr);//
                     listaG->insertarGrupo(grupo);
                     cout << "Grupo ingresado.\n";
                 }
             else {
-                   cout << "Curso o Periodo no encontrados.\n";
+                   cout << "Curso y/o Periodo no encontrados o Curso no disponible.\n";
                 }
             system("pause");
         }
             break;
         case 6:{ 
-            string idProfesor;
+            system("cls");
+            string idProfesor ,idCurso;
+            int nGrupo;
             cout << "Ingrese el ID del profesor: " << endl;
             cin >> idProfesor;
-                Profesor * profe = listaProfes->buscarProfePorId(idProfesor);
+            cout << "Ingrese el numero del grupo: " << endl;
+            cin >> nGrupo;
+            cout << "Ingrese el ID del curso: " << endl;
+            cin >> idCurso;
+           /*Profesor* profe = listaProfes->buscarProfePorId(idProfesor);
+            Curso* curso = listaCursosTotal->buscarCursoPorId(idCurso);
+            Grupo* grupo = curso->get;*/ 
                 system("pause");//////encontrar el grupo y hacer que no se confundan los numeros de grupo
            }
 

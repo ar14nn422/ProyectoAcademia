@@ -12,6 +12,7 @@ private:
 	bool estado;
 	Curso* siguiente;
 
+
 public:
 	Curso(string, string, string, int, bool);
 	Curso();
@@ -29,7 +30,6 @@ public:
 	bool getEstado();
 	Curso* getsiguiente();
 	string mostrarCurso();
-
 
 };
 #endif // !CURSO_H
