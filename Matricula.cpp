@@ -50,7 +50,7 @@ string Matricula::mostrarMatricula()
 	return s.str();
 }
 
-string Matricula::mostrarGruposPorCursoYPeriodo(Periodo* periodo, Curso* curso) {
+string Matricula::mostrarGruposPorCursoYPeriodo(Periodo* periodo, Curso* curso) {//
     stringstream s;
 	 
 		if (curso == nullptr || periodo == nullptr) {
@@ -71,3 +71,5 @@ string Matricula::mostrarGruposPorCursoYPeriodo(Periodo* periodo, Curso* curso) 
 		}
 		return s.str();
 }
+
+

@@ -134,3 +134,15 @@ string Grupo::mostrarGrupo()
     s<<mostrarEstudiantes();
     return s.str();
 }
+
+bool Grupo::estaEstudianteMatriculado(Estudiante* estudiante, Curso* curso)
+{
+    nodoEstu* actualEstu = getListaEstu(); 
+    while (actualEstu != nullptr) {
+        if (actualEstu->getEstu() == estudiante) {
+            return true; 
+        }
+        actualEstu = actualEstu->getSig();
+    }
+    return false;
+}

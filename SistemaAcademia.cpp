@@ -9,6 +9,7 @@ SistemaAcademia::SistemaAcademia()
 	listaEst = new listaEstu();
 	listaG = new listaGrupos();
     matricular = new Matricula();
+    listaM = new listaMatriculas();
 }
 
 void SistemaAcademia::mostrarMenu()
@@ -254,16 +255,16 @@ void SistemaAcademia::subMenuMatricula()
         switch (opcion) {
         case 1: {
             system("cls");
-            string idEstudiante,idCurso, fecha;            
+            string idEstudiante, idCurso, fecha;
             int numeroGrupo;
             cout << "Ingrese el ID del estudiante que desea matricular: " << endl;
             cin >> idEstudiante;
-            Estudiante* estu=listaEst->buscarEstuPorId(idEstudiante);
+            Estudiante* estu = listaEst->buscarEstuPorId(idEstudiante);
             if (!estu) {
                 cout << "No se ha encontrado el estudiante: " << endl;
             }
-            cout << "Seleccione un periodo ingresando el numero: "<< endl;
-            cout<<listaPer->mostrarLP(); 
+            cout << "Seleccione un periodo ingresando el numero: " << endl;
+            cout << listaPer->mostrarLP();
 
             int nPeriodo;
             cin >> nPeriodo;
@@ -276,15 +277,15 @@ void SistemaAcademia::subMenuMatricula()
             cout << "Ingrese el ID del curso: " << endl;
             cin >> idCurso;
 
-           
+
             Curso* curso = listaCursosTotal->buscarCursoPorId(idCurso);
             if (curso == nullptr) {
                 cout << "Curso no encontrado." << endl;
                 system("pause");
                 return;
             }
-
-            cout<<matricular->mostrarGruposPorCursoYPeriodo(periodo,curso)<<endl;
+            
+            cout << matricular->mostrarGruposPorCursoYPeriodo(periodo, curso) << endl;
 
             cout << "Ingrese el numero del grupo al que desea matricularse: ";
             cin >> numeroGrupo;
@@ -293,7 +294,7 @@ void SistemaAcademia::subMenuMatricula()
             if (grupo == nullptr) {
                 cout << "Grupo no encontrado para el curso especificado en el periodo." << endl;
                 system("pause");
-                return; 
+                return;
             }
 
             Curso* cursoGrupo = grupo->getCurso();
@@ -302,34 +303,49 @@ void SistemaAcademia::subMenuMatricula()
                 system("pause");
                 return;
             }
-            
+            if (listaM->validarMatriculaCurso(estu, curso)) {
+                cout << "El estudiante ya esta matriculado en un grupo del curso " << curso->getNombre() << "." << endl;
+                system("pause");
+                return;
+            }
+
             cout << "Ingrese la fecha en la que se esta matriculando: " << endl;
             cin >> fecha;
-            if (grupo->matricularEstudiante(estu)) { 
-                Matricula* matriculaEstu = new Matricula(estu,curso,periodo,fecha);
-                cout << "Estudiante " << estu->getNombre() << " matriculado en el grupo " << numeroGrupo
-                    << " del curso " << cursoGrupo->getNombre() << "." << endl;
+            if (grupo->matricularEstudiante(estu)) {
+                Matricula* nuevaMatricula = new Matricula(estu, curso, periodo, fecha);
+                listaM->insertarMatricula(nuevaMatricula);
+                cout << "El estudiante " << estu->getNombre() << " ha sido matriculado en el grupo "
+                    << grupo->getNumeroGrupo() << " del curso " << curso->getNombre() << "." << endl;
             }
             else {
-                cout << "No se pudo matricular al estudiante en el grupo " << numeroGrupo << "." << endl;
+                cout << "No se pudo matricular al estudiante en el grupo." << endl;
+                system("pause");
             }
+
             system("pause");
 
+            break;
         }
-              break;
 
-        case 2:
-        break;
+        case 2: {
+            
+            cout << "Funcionalidad para desmatricular estudiante.\n";
+           
+            break;
+        }
 
         case 0:
             return;
+
         default:
             cout << "Opcion no valida. Intente de nuevo.\n";
+            break; 
         }
-        system("cls");
+
+        system("cls"); 
+
     } while (opcion != 0);
 }
-
 
 void SistemaAcademia::subMenuBusquedasInformes()
 {

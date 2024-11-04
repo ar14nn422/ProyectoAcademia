@@ -136,10 +136,12 @@
     <ClInclude Include="listaCursos.h" />
     <ClInclude Include="listaEstu.h" />
     <ClInclude Include="listaGrupos.h" />
+    <ClInclude Include="listaMatriculas.h" />
     <ClInclude Include="listaPeriodos.h" />
     <ClInclude Include="listaProf.h" />
     <ClInclude Include="Matricula.h" />
     <ClInclude Include="nodoEstu.h" />
+    <ClInclude Include="nodoMatricula.h" />
     <ClInclude Include="nodoPeriodo.h" />
     <ClInclude Include="nodoProf.h" />
     <ClInclude Include="Periodo.h" />
@@ -157,11 +159,13 @@
     <ClCompile Include="listaCursos.cpp" />
     <ClCompile Include="listaEstu.cpp" />
     <ClCompile Include="listaGrupos.cpp" />
+    <ClCompile Include="listaMatriculas.cpp" />
     <ClCompile Include="listaPeriodos.cpp" />
     <ClCompile Include="listaProf.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matricula.cpp" />
     <ClCompile Include="nodoEstu.cpp" />
+    <ClCompile Include="nodoMatricula.cpp" />
     <ClCompile Include="nodoPeriodo.cpp" />
     <ClCompile Include="nodoProf.cpp" />
     <ClCompile Include="Periodo.cpp" />

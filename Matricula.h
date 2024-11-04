@@ -1,3 +1,5 @@
+#ifndef MATRICULA_H
+#define MATRICULA_H
 #include "Estudiante.h"
 #include "Grupo.h"
 #include "Periodo.h"
@@ -19,4 +21,7 @@ public:
 	string mostrarMatricula();
 	string mostrarGruposPorCursoYPeriodo(Periodo*, Curso*);
 };
+#endif // !MATRICULA_H
+
+
 
