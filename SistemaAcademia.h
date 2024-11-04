@@ -5,6 +5,7 @@
 #include "listaPeriodos.h"
 #include "listaProf.h"
 #include "PersistenciaDatos.h"
+#include "Matricula.h"
 
 class SistemaAcademia:public Interfaz
 {
@@ -15,6 +16,7 @@ private:
     listaProf* listaProfes;
     listaEstu* listaEst;
     listaGrupos* listaG;
+    Matricula* matricular;
   //  PersistenciaDatos persistencia;
 public:
     SistemaAcademia();

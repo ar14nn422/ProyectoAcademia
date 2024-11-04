@@ -73,6 +73,8 @@ Curso* listaCursos::buscarCursoPorId(string idCurso)
 	return nullptr;
 }
 
+
+
 string listaCursos::mostrarLC()
 {
 	stringstream s;

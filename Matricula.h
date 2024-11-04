@@ -5,17 +5,18 @@ class Matricula
 {
 private:
 	Estudiante* estu;
-	Grupo* grupo;
+	Curso* curso;
 	Periodo* periodo;
 	string fechaMatricula;
 public:
-	Matricula(Estudiante*, Grupo*, Periodo*, string);
+	Matricula(Estudiante*, Curso*, Periodo*, string);
 	Matricula();
 	~Matricula();
 	Estudiante* getEstudiante();
-	Grupo* getGrupo();
+	Curso* getCurso();
 	Periodo* getPeriodo();
 	string getfechaMatricula();
 	string mostrarMatricula();
+	string mostrarGruposPorCursoYPeriodo(Periodo*, Curso*);
 };
 

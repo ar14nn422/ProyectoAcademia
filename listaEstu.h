@@ -12,6 +12,7 @@ public:
 	~listaEstu();
 	void insertarEstu(Estudiante*);
 	string mostrarLE();
+	Estudiante* buscarEstuPorId(string);
 };
 #endif // !NODOESTU_H
 

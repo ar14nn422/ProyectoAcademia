@@ -1,10 +1,10 @@
 #include "Grupo.h"
-Grupo::Grupo(int num, int cap, Horario hor, Curso* cur, Profesor* prof) {
+Grupo::Grupo(int num, int cap, Horario hor,Curso* curs, Profesor* prof) {
     numeroGrupo = num;
     capacidad = cap;
     cantidadAlumnos = 0;
     horario = hor;
-    curso = cur;
+    curso = curs;
     profesor = prof;
     listaEstudiantes = nullptr;
     siguiente = nullptr;
@@ -19,7 +19,6 @@ Grupo::Grupo()
     profesor = nullptr;
     listaEstudiantes = nullptr;
     siguiente = nullptr;
-
 }
 
 Grupo::~Grupo()//
@@ -44,10 +43,7 @@ Horario Grupo::getHorario() {
     return  horario;
 }
 
-Curso* Grupo::getCurso()
-{
-    return curso;
-}
+
 
 Profesor* Grupo::getProfesor() {
     return profesor;
@@ -114,6 +110,11 @@ bool Grupo::asignarProfesor(Profesor* profesorAsign)
     }
 }
 
+Curso* Grupo::getCurso()
+{
+    return curso;
+}
+
 Grupo* Grupo::getSiguiente() {
     return siguiente;
 }
@@ -124,8 +125,7 @@ void Grupo::setSiguiente(Grupo* sig) {
 
 string Grupo::mostrarGrupo()
 {
-    stringstream s;    
-    s << "Curso:" << curso->mostrarCurso() << endl;
+    stringstream s;
     s << "Numero de grupo:" << numeroGrupo << endl;
     s << "Capacidad:" << capacidad << endl;
     s << "Cantidad de alumnos:" << cantidadAlumnos << endl;

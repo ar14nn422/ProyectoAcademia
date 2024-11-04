@@ -5,7 +5,7 @@ Periodo::Periodo(int num, string inicio, string fin)
 	numPeriodo = num;
 	mesInicio = inicio;
 	mesFinal = fin;
-	cursos = new listaCursos();
+	grupos = new listaGrupos();
 }
 
 Periodo::Periodo()
@@ -13,7 +13,7 @@ Periodo::Periodo()
 	numPeriodo = 0;
 	mesInicio = " ";
 	mesFinal = " ";
-	cursos = nullptr;
+	grupos = nullptr;
 }
 
 Periodo::~Periodo()//
@@ -25,14 +25,21 @@ int Periodo::getNumPeriodo()
 	return numPeriodo;
 }
 
-void Periodo::agregarCurso(Curso* nuevoCurso)
+int Periodo::contarCursos()
 {
-	cursos->insertarCurso(nuevoCurso);
+	return grupos->cantidadCursos();
 }
 
-listaCursos* Periodo::getlistaCursos()
+void Periodo::agregarGrupo(Grupo* nuevoGrupo)
 {
-	return cursos;
+	grupos->insertarGrupo(nuevoGrupo);
+}
+
+
+
+listaGrupos* Periodo::getlistaGrupos()
+{
+	return grupos;
 }
 
 string Periodo::mostrarPeriodo()
@@ -44,12 +51,12 @@ string Periodo::mostrarPeriodo()
 	return s.str();
 }
 
-string Periodo::mostrarCursosP()
+string Periodo::mostrarGruposP()
 {
 	stringstream s;
-	s << "Lista de cursos del periodo indicado" << endl
+	s << "Lista de grupos del periodo indicado" << endl
 		<< "-------------------------------------"<<endl
-	    << cursos->mostrarLC() << endl;
+	    << grupos->mostrarLG() << endl;
 	return s.str();
 }
 

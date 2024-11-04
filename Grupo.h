@@ -3,11 +3,11 @@
 
 
 #include "listaEstu.h"
-#include "Curso.h" 
 #include "Horario.h"
 #include "Profesor.h"
 #include "Estudiante.h"
 #include "nodoEstu.h"
+#include "Curso.h"
 
 class Grupo {
 private:
@@ -20,7 +20,7 @@ private:
     Profesor* profesor;
     Grupo* siguiente;
 public:
-    Grupo(int , int , Horario , Curso* , Profesor* );
+    Grupo(int , int , Horario ,Curso*, Profesor* );
     Grupo();
     ~Grupo();
 
@@ -28,7 +28,6 @@ public:
     int getCapacidad();
     int getCantidadAlumnos();
     Horario getHorario();
-    Curso* getCurso();
     Profesor* getProfesor();
     nodoEstu* getListaEstu();
 
@@ -37,7 +36,7 @@ public:
     bool matricularEstudiante(Estudiante*);
     string mostrarEstudiantes();
     bool asignarProfesor(Profesor*);
-
+    Curso* getCurso();
     Grupo* getSiguiente();
     void setSiguiente(Grupo*);
     string mostrarGrupo();

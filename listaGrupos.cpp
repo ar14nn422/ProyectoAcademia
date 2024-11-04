@@ -25,7 +25,7 @@ listaGrupos::~listaGrupos()
 
 void listaGrupos::insertarGrupo(Grupo* grupo)
 {
-    Grupo* nuevo = new Grupo(grupo->getNumeroGrupo(), grupo->getCapacidad(), grupo->getHorario(), grupo->getCurso(), grupo->getProfesor());
+    Grupo* nuevo = new Grupo(grupo->getNumeroGrupo(), grupo->getCapacidad(),  grupo->getHorario(),grupo->getCurso(), grupo->getProfesor());
 
     nodoEstu* actualEstu = grupo->getListaEstu(); 
     while (actualEstu != nullptr) {
@@ -47,6 +47,11 @@ void listaGrupos::insertarGrupo(Grupo* grupo)
     }
 }
 
+Grupo* listaGrupos::getPrimero()
+{
+    return primero;
+}
+
 string listaGrupos::mostrarLG()
 {
 	stringstream s;
@@ -57,4 +62,30 @@ string listaGrupos::mostrarLG()
 		actual = actual->getSiguiente();
 	}
 	return s.str();
+}
+
+int listaGrupos::cantidadCursos()
+{
+    int contador = 0;
+    actual = primero; 
+
+    while (actual != nullptr) {
+        contador++;
+        actual = actual->getSiguiente(); 
+    }
+
+    return contador;
+}
+
+Grupo* listaGrupos::buscarGrupoPorNumYCurso(int numGrupo,string idCurso)
+{
+   actual = primero; 
+    while (actual != nullptr) {
+       
+        if (actual->getNumeroGrupo() == numGrupo && actual->getCurso() != nullptr && actual->getCurso()->getId() == idCurso) {
+            return actual; 
+        }
+        actual = actual->getSiguiente();
+    }
+    return nullptr;
 }

@@ -53,9 +53,15 @@ void Curso::setsiguiente(Curso * cur) {
 	siguiente = cur;
 }
 
+
+
+
+
 Curso* Curso::getsiguiente() {
 	return siguiente;
 }
+
+
 
 string Curso::getNombre()
 {
@@ -99,5 +105,7 @@ string Curso::mostrarCurso()
 	}
 	return s.str();
 }
+
+
 
 

@@ -12,7 +12,6 @@ private:
 	bool estado;
 	Curso* siguiente;
 
-
 public:
 	Curso(string, string, string, int, bool);
 	Curso();

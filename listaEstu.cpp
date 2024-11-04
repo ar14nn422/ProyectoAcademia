@@ -47,3 +47,15 @@ string listaEstu::mostrarLE()
 	}
 	return s.str();
 }
+
+Estudiante* listaEstu::buscarEstuPorId(string idEst)
+{
+	actual = primero;
+	while (actual != nullptr) {
+		if (actual->getEstu()->getId() == idEst) {
+			return actual->getEstu();
+		}
+		actual = actual->getSig();
+	}
+	return nullptr;
+}

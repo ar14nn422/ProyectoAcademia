@@ -8,16 +8,17 @@ private:
 	int numPeriodo;
 	string mesInicio;
 	string mesFinal;
-	listaCursos* cursos;
+	listaGrupos* grupos;
 public:
 	Periodo(int, string, string);
 	Periodo();
 	~Periodo();
 	int getNumPeriodo();
-	void agregarCurso(Curso* );
-	listaCursos* getlistaCursos();
+	int contarCursos();
+	void agregarGrupo(Grupo* );
+	listaGrupos* getlistaGrupos();
 	string mostrarPeriodo();
-	string mostrarCursosP();
+	string mostrarGruposP();
 };
 #endif // !PERIODO_H
 

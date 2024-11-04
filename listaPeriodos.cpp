@@ -38,23 +38,24 @@ int listaPeriodos::contarCursos() {
 	actual = primero;
 
 	while (actual != nullptr) {
-		totalCursos += actual->getPeriodo()->getlistaCursos()->cantidadCursos();
+		totalCursos += actual->getPeriodo()->contarCursos(); 
 		actual = actual->getSig();
 	}
 
-	return totalCursos; 
+	return totalCursos;
 }
 
 Periodo* listaPeriodos::buscarPeriodoPorNum(int numPeriodo)
 {
-	nodoPeriodo* actual = primero;
+	actual = primero; 
 	while (actual != nullptr) {
+		
 		if (actual->getPeriodo()->getNumPeriodo() == numPeriodo) {
-			return actual->getPeriodo();
-
+			return actual->getPeriodo(); 
 		}
-		actual = actual->getSig();
+		actual = actual->getSig(); 
 	}
+	return nullptr;
 }
 
 string listaPeriodos::mostrarLP()

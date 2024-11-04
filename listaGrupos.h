@@ -11,7 +11,10 @@ public:
 	listaGrupos();
 	~listaGrupos();
 	void insertarGrupo(Grupo*);
+	Grupo* getPrimero();
 	string mostrarLG();
+	int cantidadCursos();
+	Grupo* buscarGrupoPorNumYCurso(int,string);
 };
 #endif // !LISTAGRUPOS_H
 
