@@ -34,7 +34,7 @@ void SistemaAcademia::mostrarMenu()
             subMenuMatricula();
             break;
         case 3:
-           // subMenuBusquedasInformes(opcion);
+            subMenuBusquedasInformes();
             break;
         case 4:
            // guardarDatos();
@@ -128,7 +128,6 @@ void SistemaAcademia::subMenuAdministracion()
             system("pause");
         }
            // if (la cantidad de periodos es mayor a 4 mensaje que diga que ya no puede ingresar mas  );
-           // periodo  no entiendo si se supone que ya estan definidos entonces para que 
             break;
         case 4:
         {
@@ -256,7 +255,7 @@ void SistemaAcademia::subMenuMatricula()
         case 1: {
             system("cls");
             string idEstudiante, idCurso, fecha;
-            int numeroGrupo;
+            int numeroGrupo, nFactura;
             cout << "Ingrese el ID del estudiante que desea matricular: " << endl;
             cin >> idEstudiante;
             Estudiante* estu = listaEst->buscarEstuPorId(idEstudiante);
@@ -314,13 +313,27 @@ void SistemaAcademia::subMenuMatricula()
             if (grupo->matricularEstudiante(estu)) {
                 Matricula* nuevaMatricula = new Matricula(estu, curso, periodo, fecha);
                 listaM->insertarMatricula(nuevaMatricula);
+                listaCursosEstu->insertarCurso(curso);
                 cout << "El estudiante " << estu->getNombre() << " ha sido matriculado en el grupo "
-                    << grupo->getNumeroGrupo() << " del curso " << curso->getNombre() << "." << endl;
+                     << grupo->getNumeroGrupo() << " del curso " << curso->getNombre() << "." << endl<<endl;
+                
+                cout << "Si DESEA la factura del estudiante ingrese 1 si NO LA DESEA ingrese 0: " << endl;
+                cin >> nFactura;
+                if (nFactura == 1) {
+                Factura* facturaEstudiante = new Factura(estu,listaPer,listaCursosEstu);
+                cout << facturaEstudiante->mostrarFactura();
+                }
+                else {
+                    break;
+                }
+
+
             }
             else {
                 cout << "No se pudo matricular al estudiante en el grupo." << endl;
                 system("pause");
             }
+
 
             system("pause");
 
@@ -349,5 +362,45 @@ void SistemaAcademia::subMenuMatricula()
 
 void SistemaAcademia::subMenuBusquedasInformes()
 {
+    int opcion;
+
+    do {
+        cout << "Busquedas e Informes\n";
+        cout << "(1) Informe profesores regristrados\n";
+        cout << "(2) Informe estudiantes registrados\n";
+        cout << "(3) Informes cursos matriculados por un estudiante\n";
+        cout << "(4) Informe profesor especifico\n";
+        cout << "(5) Informe periodos habilitados para el anno\n";
+        cout << "(6) Informe grupo especifico\n";
+        cout << "(0) Regresar al Menu Principal\n";
+        cout << "Ingrese la opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            system("cls");
+        case 1: {
+            cout<<listaProfes->mostrarProfesoresSinGrupo(listaG) << endl;
+            system("pause");
+            break;
+        }
+
+        case 2: {
+
+            cout << "Funcionalidad para desmatricular estudiante.\n";
+
+            break;
+        }
+
+        case 0:
+            return;
+
+        default:
+            cout << "Opcion no valida. Intente de nuevo.\n";
+            break;
+        }
+
+        system("cls");
+
+    } while (opcion != 0);
 }
 

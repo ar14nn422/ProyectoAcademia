@@ -7,6 +7,7 @@
 #include "PersistenciaDatos.h"
 #include "Matricula.h"
 #include "listaMatriculas.h"
+#include "Factura.h"
 
 class SistemaAcademia:public Interfaz
 {

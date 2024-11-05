@@ -39,25 +39,29 @@ Factura::~Factura()
 
 
 
-float Factura::aplicarDescuento()
+float Factura::aplicarDescuento()//////////////////////////////
 {
-	
-		subtotal = calcularSubtotal();
-		int cantidadCursos = cursos->cantidadCursos();
-		descuento = 0.0;
+	subtotal = calcularSubtotal();  // Calcula el subtotal primero
+	descuento = 0.0;  // Inicializa el descuento en cero
 
-		if (cantidadCursos >= 2) {
-			descuento = subtotal * 0.15;
+	// Descuento por cantidad de cursos en el mismo periodo
+	int cantidadCursos = cursos->cantidadCursos();
+	if (cantidadCursos >= 2) {
+		descuento = subtotal * 0.15;  // Aplica el 15% de descuento
+		
+	}
+
+	// Descuento adicional por cantidad de cursos en todo el año
+	if (periodos != nullptr) {
+		int cantidadCursosEnElAno = periodos->contarCursos();
+		if (cantidadCursosEnElAno >= 4) {
+			float descuentoAdicional = subtotal * 0.25;
+			descuento += descuentoAdicional;  // Suma el 25% de descuento adicional
+			
 		}
+	}
 
-		if (periodos != nullptr) {
-			int cantidadCursosEnElAno = periodos->contarCursos();
-			if (cantidadCursosEnElAno >= 4) {
-				descuento += subtotal * 0.25; 
-			}
-		}
-
-		return descuento;
+	return descuento;
 }
 
 float Factura::calcularSubtotal()
@@ -85,7 +89,8 @@ string Factura::mostrarFactura()
 {
 	stringstream s;
 	s << "Factura para el estudiante: " << estudiante->getNombre() << endl
-		<< "Matriculado en " << cursos->cantidadCursos() << " cursos" << endl
+		<< "Matriculado en los siguientes " << cursos->cantidadCursos() << " cursos" << endl<<endl
+		<<cursos->mostrarLC()<<endl
 		<< "Subtotal:" << calcularSubtotal() << endl
 		<< "Total:" << calcularTotal() << endl;
 	return s.str();

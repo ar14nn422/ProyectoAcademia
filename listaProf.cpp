@@ -60,3 +60,18 @@ listaProf::~listaProf()
 		delete actual;
 	}
 }
+string listaProf::mostrarProfesoresSinGrupo(listaGrupos* listaG) {
+	stringstream s;
+	actual=primero;  
+	s << "Profesores sin grupo asignado:\n";
+
+	while (actual != nullptr) {
+		bool estaAsignado = listaG->existeProfesorEnGrupos(actual->getProfe());
+
+		if (!estaAsignado) {
+			s << "ID: " << actual->getProfe()->getId() << " - Nombre: " << actual->getProfe()->getNombre() << endl;
+		}
+		actual = actual->getSig();  
+	}
+	return s.str();
+}

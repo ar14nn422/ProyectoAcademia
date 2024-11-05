@@ -89,3 +89,16 @@ Grupo* listaGrupos::buscarGrupoPorNumYCurso(int numGrupo,string idCurso)
     }
     return nullptr;
 }
+
+
+bool listaGrupos::existeProfesorEnGrupos(Profesor* profesor) {
+    actual=primero;  
+
+    while (actual != nullptr) {
+        if (actual->getProfesor() == profesor) {
+            return true;  
+        }
+        actual = actual->getSiguiente();  
+    }
+    return false;  
+}

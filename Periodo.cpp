@@ -45,7 +45,7 @@ listaGrupos* Periodo::getlistaGrupos()
 string Periodo::mostrarPeriodo()
 {
 	stringstream s;
-	s << "Periodo numero" << numPeriodo << endl
+	s << "Periodo numero " << numPeriodo << endl
 		<< "Mes de inicio: " << mesInicio << endl
 		<< "Mes de finalizacion: " << mesFinal << endl;
 	return s.str();

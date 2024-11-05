@@ -65,7 +65,8 @@ string Matricula::mostrarGruposPorCursoYPeriodo(Periodo* periodo, Curso* curso) 
 		while (grupoActual != nullptr) {
 			if (grupoActual->getCurso()->getId() == curso->getId()) { 
 				s << "Grupo " << grupoActual->getNumeroGrupo()
-					<< ": Capacidad " << grupoActual->getCapacidad() << endl; 
+					<< ": Capacidad " << grupoActual->getCapacidad() << endl
+					<< "Cantidad de estudiantes matriculados: " << grupoActual->getCantidadAlumnos() << endl;
 			}
 			grupoActual = grupoActual->getSiguiente();
 		}

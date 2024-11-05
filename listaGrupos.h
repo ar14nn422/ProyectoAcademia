@@ -15,6 +15,7 @@ public:
 	string mostrarLG();
 	int cantidadCursos();
 	Grupo* buscarGrupoPorNumYCurso(int,string);
+	bool existeProfesorEnGrupos(Profesor*);
 };
 #endif // !LISTAGRUPOS_H
 

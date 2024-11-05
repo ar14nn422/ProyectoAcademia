@@ -1,4 +1,5 @@
 #include "nodoProf.h"
+#include "listaGrupos.h"
 class listaProf
 {
 private:
@@ -11,6 +12,7 @@ public:
 	Profesor* buscarProfePorId(string);
 	string mostrarLP();
 	~listaProf();
+	string mostrarProfesoresSinGrupo(listaGrupos*);
 
 };
 
