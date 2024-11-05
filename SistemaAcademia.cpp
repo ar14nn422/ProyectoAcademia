@@ -386,14 +386,36 @@ void SistemaAcademia::subMenuBusquedasInformes()
 
         case 2: {
 
-            cout << "Funcionalidad para desmatricular estudiante.\n";
+            /////////////////////////////////////////////////////////////////////////////////////
 
             break;
         }
 
-        case 0:
-            return;
+        case 3: {
+            string idEstudiante;
+            cout << "Ingrese el ID del estudiante: " << endl;
+            cin >> idEstudiante;
+            Estudiante* estu = listaEst->buscarEstuPorId(idEstudiante);
+            cout<<listaCursosEstu->mostrarLC();//me falta lo de numero de grupo matriculado
+            system("pause");
+        }
+            break;
+        case 4: {
+            string idProfe;
+            cout << listaProfes->mostrarLP() << endl;
+            cout << "Ingrese el ID del profesor del que desea el informe: " << endl;
+            cin >> idProfe;
+            Profesor* profe = listaProfes->buscarProfePorId(idProfe);
+            cout<<listaG->mostrarCursosYGruposPorProfesor(profe)<<endl;
+            //falta que se vean los periodos
+            system("pause");
+           
+        }
+              break;
+        case 5: {
 
+        }
+              break;
         default:
             cout << "Opcion no valida. Intente de nuevo.\n";
             break;

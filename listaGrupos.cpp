@@ -102,3 +102,25 @@ bool listaGrupos::existeProfesorEnGrupos(Profesor* profesor) {
     }
     return false;  
 }
+
+string listaGrupos::mostrarCursosYGruposPorProfesor( Profesor* profesor) {//////
+    stringstream s;
+    actual=primero;
+
+    s<< "Cursos y grupos impartidos por el Profesor " << profesor->getNombre() << endl;
+    bool encontrado = false;
+
+    while (actual != nullptr) {
+        if (actual->getProfesor() == profesor) {
+            s << "Curso: " << actual->getCurso()->getNombre()
+                << " - Grupo: " << actual->getNumeroGrupo() << endl;
+            encontrado = true;
+        }
+        actual = actual->getSiguiente(); 
+    }
+
+    if (!encontrado) {
+        s << "Este profesor no tiene grupos asignados"<<endl;
+    }
+    return s.str();
+}

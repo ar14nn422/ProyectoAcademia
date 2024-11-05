@@ -60,3 +60,6 @@ string Periodo::mostrarGruposP()
 	return s.str();
 }
 
+
+
+

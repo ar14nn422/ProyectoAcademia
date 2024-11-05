@@ -95,3 +95,5 @@ string Factura::mostrarFactura()
 		<< "Total:" << calcularTotal() << endl;
 	return s.str();
 }
+
+

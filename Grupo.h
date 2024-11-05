@@ -41,7 +41,6 @@ public:
     void setSiguiente(Grupo*);
     string mostrarGrupo();
     bool estaEstudianteMatriculado(Estudiante*, Curso*);
-
 };
 
 
