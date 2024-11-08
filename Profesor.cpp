@@ -3,6 +3,10 @@ Profesor::Profesor(string nombre, string id, string num, string email, string gA
 
 	gradoAcademico = gA;
 }
+Profesor::Profesor(string nom)
+{
+	nombre = nom;
+}
 Profesor::Profesor() {
 	gradoAcademico = " ";
 };

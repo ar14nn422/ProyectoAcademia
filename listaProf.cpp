@@ -75,3 +75,56 @@ string listaProf::mostrarProfesoresSinGrupo(listaGrupos* listaG) {
 	}
 	return s.str();
 }
+
+void listaProf::guardarEnArchivo(string nombreArchivo) {
+	ofstream f(nombreArchivo);
+
+	if (!f.is_open()) {
+		cerr << "Error al abrir el archivo para guardar los datos." << endl;
+		return;
+	}
+
+	actual = primero;
+	while (actual != nullptr) {
+		Profesor* profe = actual->getProfe();
+		f << profe->getNombre() << ","
+			<< profe->getId() << ","
+			<< profe->getTelefono() << ","
+			<< profe->getEmail() << ","
+			<< profe->getGradoA() << endl;
+
+		actual = actual->getSig();
+	}
+
+	f.close();
+}
+
+
+void listaProf::cargarDesdeArchivo(string nombreArchivo) {
+	ifstream f(nombreArchivo);
+
+	if (!f.is_open()) {
+		cerr << "No se encontro un archivo de datos.Comenzando con una lista vacia." << endl;
+		return;
+	}
+
+
+	string linea;
+	while (getline(f, linea)) {
+		stringstream s(linea);
+		string id, nombre, num, email, gradoAcademico;
+
+
+		getline(s, id, ',');
+		getline(s, nombre, ',');
+		getline(s, num, ',');
+		getline(s, email, ',');
+		getline(s, gradoAcademico, ',');
+
+
+		Profesor* profe = new Profesor(nombre, id, num, email, gradoAcademico);
+		insertarProfesor(profe);
+	}
+
+	f.close();
+}

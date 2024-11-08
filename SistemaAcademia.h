@@ -26,6 +26,8 @@ public:
     void mostrarMenu();
     void subMenuAdministracion();
     void subMenuMatricula();
+    void cargarArchivos();
+    void guardarArchivos();
     void subMenuBusquedasInformes();
 };
 

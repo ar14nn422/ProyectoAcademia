@@ -7,6 +7,7 @@ public:
     virtual void subMenuAdministracion() = 0;
     virtual void subMenuMatricula() = 0;
     virtual void subMenuBusquedasInformes() = 0;
+    virtual void cargarArchivos() = 0;
    
 };
 #endif // !INTERFAZ_H

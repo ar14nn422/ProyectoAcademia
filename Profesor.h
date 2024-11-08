@@ -7,6 +7,7 @@ private:
 	string gradoAcademico;
 public:
 	Profesor(string, string, string, string, string);
+	Profesor(string);
 	Profesor();
 	string getGradoA();
 	void setGradoA(string);

@@ -14,6 +14,7 @@ SistemaAcademia::SistemaAcademia()
 
 void SistemaAcademia::mostrarMenu()
 {
+    
     int opcion;
     do {
         cout << "Menu Principal\n";
@@ -37,7 +38,8 @@ void SistemaAcademia::mostrarMenu()
             subMenuBusquedasInformes();
             break;
         case 4:
-           // guardarDatos();
+           
+            guardarArchivos();
             break;
         case 5:
             cout << "Saliendo...\n";
@@ -114,15 +116,14 @@ void SistemaAcademia::subMenuAdministracion()
             break;
         case 3:
         {
-            int num;
-            string mInicio,mFinal;
+            string mInicio,mFinal, num;
             system("cls");
             cout << "Ingrese el numero del periodo: " << endl;
             cin >> num;
             cout << "Ingrese el mes en que inicia este periodo: " << endl;
-            cin >> mInicio;
+            cin>>mInicio;
             cout << "Ingrese el mes en que finaliza el periodo: " << endl;
-            cin >> mFinal;
+            cin>>mFinal;
             Periodo* per = new Periodo(num, mInicio, mFinal);
             listaPer->insertarPeriodos(per);
             system("pause");
@@ -160,8 +161,8 @@ void SistemaAcademia::subMenuAdministracion()
             break;
         case 5:
         {
-            string idCurso, dia, horaInicio, horaFin;
-            int numG, capacidad, numPeriodo;
+            string idCurso, dia, horaInicio, horaFin,numPeriodo;
+            int numG, capacidad;
             system("cls");
             cout << "Ingrese el numero de grupo: " << endl;
             cin >> numG;
@@ -184,16 +185,16 @@ void SistemaAcademia::subMenuAdministracion()
 
             if (curso && periodo && curso->getEstado()==true) {
                     Horario horario(dia, horaInicio, horaFin);
-                    Grupo* grupo = new Grupo(numG,capacidad,horario,curso,nullptr);
+                    Grupo* grupo = new Grupo(numG,capacidad,horario,curso);
                     periodo->agregarGrupo(grupo);
                     listaG->insertarGrupo(grupo);
                     cout << "Grupo ingresado.\n";
                 }
             else {
-                   cout << "Curso y/o Periodo no encontrados o Curso no disponible.\n";
+                   cout << "Curso y/o Periodo no encontrados o Curso no disponible."<<endl;
                 }
-           // cout << "Grupos que hay en el " << periodo->getNumPeriodo() << periodo->mostrarGruposP();
-           // cout << curso->mostrarGruposDelCurso() << endl;////se cae con small string las dos listas de grupo
+            cout << listaG->mostrarLG() << endl;//
+           
             system("pause");
         }
             break;
@@ -255,6 +256,7 @@ void SistemaAcademia::subMenuMatricula()
         case 1: {
             system("cls");
             string idEstudiante, idCurso, fecha;
+            string numeroPeriodo;
             int numeroGrupo, nFactura;
             cout << "Ingrese el ID del estudiante que desea matricular: " << endl;
             cin >> idEstudiante;
@@ -265,9 +267,9 @@ void SistemaAcademia::subMenuMatricula()
             cout << "Seleccione un periodo ingresando el numero: " << endl;
             cout << listaPer->mostrarLP();
 
-            int nPeriodo;
-            cin >> nPeriodo;
-            Periodo* periodo = listaPer->buscarPeriodoPorNum(nPeriodo);
+            cin >> numeroPeriodo;
+            
+            Periodo* periodo = listaPer->buscarPeriodoPorNum(numeroPeriodo);
             if (periodo == nullptr) {
                 cout << "Periodo no encontrado.\n";
                 return;
@@ -360,6 +362,28 @@ void SistemaAcademia::subMenuMatricula()
     } while (opcion != 0);
 }
 
+void SistemaAcademia::cargarArchivos()
+{
+   
+        listaEst->cargarDesdeArchivo("Estudiantes.txt");
+        listaG->cargarDesdeArchivo("Grupos.txt");
+        listaPer->cargarDesdeArchivo("Periodos.txt");
+        listaCursosTotal->cargarDesdeArchivo("Cursos.txt");
+        listaCursosEstu->cargarDesdeArchivo("CursosEstu.txt");
+        listaProfes->cargarDesdeArchivo("Profesores.txt");
+     
+}
+
+void SistemaAcademia::guardarArchivos()
+{
+    listaEst->guardarEnArchivo("Estudiantes.txt");
+    listaG->guardarEnArchivo("Grupos.txt");
+    listaPer->guardarEnArchivo("Periodos.txt");
+    listaCursosTotal->guardarEnArchivo("Cursos.txt");
+    listaCursosEstu->guardarEnArchivo("CursosEstu.txt");
+    listaProfes->guardarEnArchivo("Profesores.txt");
+}
+
 void SistemaAcademia::subMenuBusquedasInformes()
 {
     int opcion;
@@ -385,7 +409,10 @@ void SistemaAcademia::subMenuBusquedasInformes()
         }
 
         case 2: {
-
+        
+           // cout <<listaEst->mostrarLE();
+           cout<< listaProfes->mostrarLP();//ponerle el resto de mostrar a los profesores
+            system("pause"); 
             /////////////////////////////////////////////////////////////////////////////////////
 
             break;
@@ -406,6 +433,7 @@ void SistemaAcademia::subMenuBusquedasInformes()
             cout << "Ingrese el ID del profesor del que desea el informe: " << endl;
             cin >> idProfe;
             Profesor* profe = listaProfes->buscarProfePorId(idProfe);
+            //cout<<listaPer->mostrarCursosYGruposPorProfesor(profe);
             cout<<listaG->mostrarCursosYGruposPorProfesor(profe)<<endl;
             //falta que se vean los periodos
             system("pause");
@@ -413,6 +441,33 @@ void SistemaAcademia::subMenuBusquedasInformes()
         }
               break;
         case 5: {
+            system("cls");
+            cout<<listaPer->mostrarPeriodosYGrupos();//probar bien
+            system("pause");
+        }
+              break;
+        case 6: {
+            string idCurso;
+            int numGrupo;
+            cout << listaCursosTotal->mostrarLC();
+            cout << "Ingrese el ID del curso del cual desea el informe: " << endl;
+            cin >> idCurso;
+            Curso* cursoSeleccionado= listaCursosTotal->buscarCursoPorId(idCurso);
+            if (cursoSeleccionado == nullptr) {
+                cout << "El ID ingresado no es valido" << endl;
+            }
+            cout << "Grupos del curso: " << cursoSeleccionado->getNombre() << endl;
+            cout << listaG->mostrarGruposPorCurso(cursoSeleccionado) << endl;
+
+            cout << "Ingrese el numero del grupo del cual desea el informe: " << endl;
+            cin >> numGrupo;
+            
+            Grupo* grupoSeleccionado = listaG->buscarGrupoPorNumYCurso(numGrupo, idCurso);
+            if (grupoSeleccionado != nullptr) {
+                //NO MUESTRA LA CANTIDAD DE ESTUDIANTES NI LA LISTA DE ESTUDIANTES SOLO EL RESTO DE LA INFORMACIÓN
+            }
+
+            system("pause");
 
         }
               break;
@@ -424,5 +479,8 @@ void SistemaAcademia::subMenuBusquedasInformes()
         system("cls");
 
     } while (opcion != 0);
+
+   
+
 }
 

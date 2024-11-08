@@ -16,7 +16,11 @@ public:
 	int cantidadCursos();
 	Grupo* buscarGrupoPorNumYCurso(int,string);
 	bool existeProfesorEnGrupos(Profesor*);
+	void guardarEnArchivo(string);
+	void cargarDesdeArchivo(string);
 	string mostrarCursosYGruposPorProfesor(Profesor* profesor);
+	string mostrarCursosYGrupos();
+	string mostrarGruposPorCurso(Curso*);
 };
 #endif // !LISTAGRUPOS_H
 

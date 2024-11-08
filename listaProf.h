@@ -13,6 +13,8 @@ public:
 	string mostrarLP();
 	~listaProf();
 	string mostrarProfesoresSinGrupo(listaGrupos*);
+	void guardarEnArchivo(string);
+	void cargarDesdeArchivo(string);
 
 };
 

@@ -37,6 +37,11 @@ void listaEstu::insertarEstu(Estudiante* estu)
 	}
 }
 
+nodoEstu* listaEstu::getPrimero()
+{
+	return primero;
+}
+
 string listaEstu::mostrarLE()
 {
 	actual = primero;
@@ -58,4 +63,56 @@ Estudiante* listaEstu::buscarEstuPorId(string idEst)
 		actual = actual->getSig();
 	}
 	return nullptr;
+}
+void listaEstu::guardarEnArchivo(string nombreArchivo) {
+	ofstream f(nombreArchivo); 
+
+	if (!f.is_open()) {
+		cerr << "Error al abrir el archivo para guardar los datos." << endl;
+		return;
+	}
+
+	actual = primero;
+	while (actual != nullptr) {
+		Estudiante* estu = actual->getEstu();
+		f << estu->getId() << ","
+			<< estu->getNombre() << ","
+			<< estu->getTelefono() << ","
+			<< estu->getEmail() << ","
+			<< estu->getEsp()<< endl;
+
+		actual = actual->getSig();
+	}
+
+	f.close();
+}
+
+
+void listaEstu::cargarDesdeArchivo( string nombreArchivo) {
+	ifstream f(nombreArchivo); 
+
+	if (!f.is_open()) {
+	cerr << "No se encontro un archivo de datos.Comenzando con una lista vacia." << endl;
+		return;
+	}
+	
+
+	string linea;
+	while (getline(f, linea)) {
+		stringstream s(linea);
+		string id, nombre, num, email, especialidad;
+
+		
+		getline(s, id, ',');
+		getline(s, nombre, ',');
+		getline(s, num, ',');
+		getline(s, email, ',');
+		getline(s, especialidad, ',');
+
+		
+		Estudiante* estu = new Estudiante(nombre, id, num, email, especialidad);
+		insertarEstu(estu);
+	}
+
+	f.close();
 }

@@ -1,28 +1,40 @@
 #include "Periodo.h"
 
-Periodo::Periodo(int num, string inicio, string fin)
+Periodo::Periodo(string num, string inicio, string fin)
 {
 	numPeriodo = num;
 	mesInicio = inicio;
 	mesFinal = fin;
 	grupos = new listaGrupos();
+	cursos = new listaCursos();
 }
 
 Periodo::Periodo()
 {
-	numPeriodo = 0;
+	numPeriodo = " ";
 	mesInicio = " ";
 	mesFinal = " ";
 	grupos = nullptr;
+	cursos = nullptr;
 }
 
 Periodo::~Periodo()//
 {
 }
 
-int Periodo::getNumPeriodo()
+string Periodo::getNumPeriodo()
 {
 	return numPeriodo;
+}
+
+string Periodo::getInicio()
+{
+	return mesInicio;
+}
+
+string Periodo::getFinal()
+{
+	return mesFinal;
 }
 
 int Periodo::contarCursos()
@@ -33,6 +45,11 @@ int Periodo::contarCursos()
 void Periodo::agregarGrupo(Grupo* nuevoGrupo)
 {
 	grupos->insertarGrupo(nuevoGrupo);
+}
+
+void Periodo::setlistaGrupos(listaGrupos* grupo)
+{
+	grupos = grupo;
 }
 
 

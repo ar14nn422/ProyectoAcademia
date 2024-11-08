@@ -2,20 +2,25 @@
 #define PERIODO_H
 #include "listaCursos.h"
 #include "listaGrupos.h"
+#include "listaCursos.h"
 class Periodo
 {
 private:
-	int numPeriodo;
+	string numPeriodo;
 	string mesInicio;
 	string mesFinal;
 	listaGrupos* grupos;
+	listaCursos* cursos;
 public:
-	Periodo(int, string, string);
+	Periodo(string, string, string);
 	Periodo();
 	~Periodo();
-	int getNumPeriodo();
+	string getNumPeriodo();
+	string getInicio();
+	string getFinal();
 	int contarCursos();
 	void agregarGrupo(Grupo* );
+	void setlistaGrupos(listaGrupos*);
 	listaGrupos* getlistaGrupos();
 	string mostrarPeriodo();
 	string mostrarGruposP();

@@ -1,12 +1,12 @@
 #include "Grupo.h"
-Grupo::Grupo(int num, int cap, Horario hor,Curso* curs, Profesor* prof) {
+Grupo::Grupo(int num, int cap, Horario hor,Curso* curs) {
     numeroGrupo = num;
     capacidad = cap;
     cantidadAlumnos = 0;
     horario = hor;
     curso = curs;
-    profesor = prof;
-    listaEstudiantes = nullptr;
+    profesor = nullptr;
+    listaEstudiantes = new listaEstu();
     siguiente = nullptr;
 }
 
@@ -17,7 +17,7 @@ Grupo::Grupo()
     cantidadAlumnos = 0;
     curso = nullptr;
     profesor = nullptr;
-    listaEstudiantes = nullptr;
+    listaEstudiantes = new listaEstu();
     siguiente = nullptr;
 }
 
@@ -49,7 +49,7 @@ Profesor* Grupo::getProfesor() {
     return profesor;
 }
 
-nodoEstu* Grupo::getListaEstu()
+listaEstu* Grupo::getListaEstu()
 {
     return listaEstudiantes;
 }
@@ -71,17 +71,7 @@ void Grupo::decrementarAlumnos() {
 
 bool Grupo::matricularEstudiante(Estudiante* estudiante) {
     if (cantidadAlumnos < capacidad) {
-        nodoEstu* nuevoNodo = new nodoEstu(estudiante, nullptr);
-        if (listaEstudiantes == nullptr) {
-            listaEstudiantes = nuevoNodo;
-        }
-        else {
-            nodoEstu* temp = listaEstudiantes;
-            while (temp->getSig() != nullptr) {
-                temp = temp->getSig();
-            }
-            temp->setSig(nuevoNodo);
-        }
+        listaEstudiantes->insertarEstu(estudiante);  
         cantidadAlumnos++;
         return true;
     }
@@ -90,11 +80,10 @@ bool Grupo::matricularEstudiante(Estudiante* estudiante) {
 
 string Grupo::mostrarEstudiantes() {
     stringstream s;
-    nodoEstu* actual = listaEstudiantes;
-    s << "Estudiantes matriculados en el grupo " << numeroGrupo << ":"<< endl;
+    nodoEstu* actual = listaEstudiantes->getPrimero();  
     while (actual != nullptr) {
-        s << actual->getEstu()->getNombre() << endl; 
-        actual = actual->getSig(); 
+        s << actual->getEstu()->getNombre() << endl;
+        actual = actual->getSig();  
     }
     return s.str();
 }
@@ -126,25 +115,106 @@ void Grupo::setSiguiente(Grupo* sig) {
 string Grupo::mostrarGrupo()
 {
     stringstream s;
-    s << "Numero de grupo:" << numeroGrupo << endl;
-    s << "Capacidad:" << capacidad << endl;
-    s << "Cantidad de alumnos:" << cantidadAlumnos << endl;
-    s << "Horario:" << horario.mostrarHorario() << endl;
-    s << "Profesor" << profesor->mostrarProfe() << endl;
+    s << "Numero de grupo:" << numeroGrupo << endl
+     << "Capacidad:" << capacidad << endl
+     << "Cantidad de alumnos:" << cantidadAlumnos << endl
+     << "Horario:" << horario.mostrarHorario() << endl;
+    if (profesor != nullptr) {
+        s << "Profesor: " << endl
+            << profesor->mostrarProfe() << endl;
+    }
+    else {
+        s << "Profesor no asignado." << endl;
+    }
     s<<mostrarEstudiantes();
     return s.str();
 }
 
 bool Grupo::estaEstudianteMatriculado(Estudiante* estudiante, Curso* curso)
 {
-    nodoEstu* actualEstu = getListaEstu(); 
+    nodoEstu* actualEstu = listaEstudiantes->getPrimero(); 
     while (actualEstu != nullptr) {
-        if (actualEstu->getEstu() == estudiante) {
-            return true; 
+        if (actualEstu->getEstu() == estudiante) {  
+            return true;  
         }
-        actualEstu = actualEstu->getSig();
+        actualEstu = actualEstu->getSig();  
     }
     return false;
 }
+
+void Grupo::guardarEnArchivo(const string& nombreArchivo) {
+    ofstream archivo(nombreArchivo, ios::app);  
+    if (!archivo.is_open()) {
+        cout << "No se pudo abrir el archivo para guardar los grupos." << endl;
+        return;
+    }
+
+ 
+    archivo << numeroGrupo << ","
+        << capacidad << ","
+        << cantidadAlumnos << ","
+        << curso->getId() << "," 
+        << horario.getHoraInicio() << "," << horario.getHoraFin() << "," 
+        << profesor->getId() << "," 
+        << listaEstudiantes->mostrarLE();  
+
+    archivo.close();
+    cout << "Datos del grupo guardados correctamente." << endl;
+}
+
+//void Grupo::cargarDesdeArchivo(const string& nombreArchivo) {
+//    ifstream archivo(nombreArchivo);
+//    if (!archivo.is_open()) {
+//        cout << "No se encontro un archivo de grupos. Comenzando con una lista vacia." << endl;
+//        return;
+//    }
+//
+//    string linea;
+//    while (getline(archivo, linea)) {
+//        stringstream ss(linea);
+//        string numGrupo, cap, cantAlumnos, codCurso, horaInicio, horaFin, idProfesor;
+//
+//        getline(ss, numGrupo, ',');
+//        getline(ss, cap, ',');
+//        getline(ss, cantAlumnos, ',');
+//        getline(ss, codCurso, ',');
+//        getline(ss, horaInicio, ',');
+//        getline(ss, horaFin, ',');
+//        getline(ss, idProfesor, ',');
+//
+//        // Convertir las cadenas en los tipos adecuados
+//        int numeroGrupo = stoi(numGrupo);
+//        int capacidad = stoi(cap);
+//        int cantidadAlumnos = stoi(cantAlumnos);
+//        int horaInicioInt = stoi(horaInicio);
+//        int horaFinInt = stoi(horaFin);
+//
+//        // Buscar el curso por código, profesor por ID, etc.
+//        Curso* curso = buscarCursoPorCodigo(codCurso);
+//        Profesor* profesor = buscarProfesorPorId(idProfesor);
+//        Horario horario(horaInicioInt, horaFinInt);
+//
+//        // Crear un nuevo grupo con los datos cargados
+//        Grupo* nuevoGrupo = new Grupo(numeroGrupo, capacidad, horario, curso);
+//        nuevoGrupo->asignarProfesor(profesor);
+//
+//        // Cargar los estudiantes (si los hay)
+//        listaEstu* estudiantes = new listaEstu();
+//        string idEstudiante;
+//        while (getline(ss, idEstudiante, ',')) {
+//            Estudiante* estudiante = buscarEstudiantePorId(idEstudiante);
+//            if (estudiante != nullptr) {
+//                estudiantes->insertarEstu(estudiante);
+//            }
+//        }
+//        nuevoGrupo->setListaEstu(estudiantes);
+//
+//        // Insertar el grupo en la lista de grupos (o manejarlo según tu implementación)
+//        insertarGrupo(nuevoGrupo);
+//    }
+//
+//    archivo.close();
+//    cout << "Datos de los grupos cargados correctamente." << endl;
+//}
 
 

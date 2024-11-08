@@ -14,6 +14,7 @@ private:
 
 public:
 	Curso(string, string, string, int, bool);
+	Curso(string, string);
 	Curso();
 	~Curso();
 	void setNombre(string);

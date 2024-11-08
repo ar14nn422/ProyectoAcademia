@@ -10,6 +10,16 @@ Curso::Curso(string nom, string i, string hrs, int prec, bool est)
 	siguiente=nullptr;
 }
 
+Curso::Curso(string nom, string i)
+{
+	nombre = nom;
+	id = i;
+	horas = " ";
+	precio = 0;
+	estado = true;
+	siguiente = nullptr;
+}
+
 Curso::Curso()
 {
 	nombre = " ";

@@ -16,11 +16,11 @@ private:
     int cantidadAlumnos;
     Horario horario;
     Curso* curso;
-    nodoEstu* listaEstudiantes;
+    listaEstu* listaEstudiantes;
     Profesor* profesor;
     Grupo* siguiente;
 public:
-    Grupo(int , int , Horario ,Curso*, Profesor* );
+    Grupo(int , int , Horario ,Curso* );
     Grupo();
     ~Grupo();
 
@@ -29,7 +29,7 @@ public:
     int getCantidadAlumnos();
     Horario getHorario();
     Profesor* getProfesor();
-    nodoEstu* getListaEstu();
+    listaEstu* getListaEstu();
 
     bool incrementarAlumnos();
     void decrementarAlumnos();
@@ -41,6 +41,8 @@ public:
     void setSiguiente(Grupo*);
     string mostrarGrupo();
     bool estaEstudianteMatriculado(Estudiante*, Curso*);
+    void guardarEnArchivo(const string& nombreArchivo);
+    void cargarDesdeArchivo(const string& nombreArchivo);
 };
 
 
