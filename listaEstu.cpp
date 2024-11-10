@@ -36,10 +36,35 @@ void listaEstu::insertarEstu(Estudiante* estu)
 		actual->setSig(nuevo);
 	}
 }
+void listaEstu::eliminarEstudiante(Estudiante* estudiante) {
+	actual=primero;  
+	nodoEstu* anterior = nullptr;
+
+	while (actual != nullptr) {
+		if (actual->getEstu() == estudiante) {  
+			if (anterior == nullptr) {  
+				setPrimero(actual->getSig());  
+			}
+			else {
+				anterior->setSig(actual->getSig());  
+			}
+			delete actual;  
+			return;  
+		}
+		anterior = actual;
+		actual = actual->getSig();  
+	}
+}
+
 
 nodoEstu* listaEstu::getPrimero()
 {
 	return primero;
+}
+
+void listaEstu::setPrimero(nodoEstu* prim)
+{
+	primero = prim;
 }
 
 string listaEstu::mostrarLE()
@@ -64,6 +89,18 @@ Estudiante* listaEstu::buscarEstuPorId(string idEst)
 	}
 	return nullptr;
 }
+
+bool listaEstu::verificarDuplicadoAlumno(string id) {
+	actual = primero; 
+	while (actual != nullptr) {
+		if (actual->getEstu()->getId() == id) {
+			return true;  
+		}
+		actual = actual->getSig(); 
+	}
+	return false; 
+}
+
 void listaEstu::guardarEnArchivo(string nombreArchivo) {
 	ofstream f(nombreArchivo); 
 
@@ -116,3 +153,4 @@ void listaEstu::cargarDesdeArchivo( string nombreArchivo) {
 
 	f.close();
 }
+

@@ -63,7 +63,7 @@ string listaPeriodos::mostrarLP()
 	stringstream s;
 	actual = primero;
 	while (actual != nullptr) {
-		s << actual->mostrarNodo() << endl;
+		s << actual->getPeriodo()->mostrarPeriodo() << endl;
 		actual = actual->getSig();
 	}
 	return s.str();
@@ -78,9 +78,19 @@ listaPeriodos::~listaPeriodos()
 	}
 }
 
+bool listaPeriodos::existePeriodoNum(string num) {
+	actual = primero;
+	while (actual != nullptr) {
+		if (actual->getPeriodo()->getNumPeriodo() == num) {
+			return true; 
+		}
+		actual = actual->getSig();
+	}
+	return false; 
+}
+
 void listaPeriodos::guardarEnArchivo(string nombreArchivo) {
 	ofstream f(nombreArchivo);
-
 	if (!f.is_open()) {
 		cerr << "Error al abrir el archivo para guardar datos." << endl;
 		return;
@@ -88,13 +98,17 @@ void listaPeriodos::guardarEnArchivo(string nombreArchivo) {
 
 	actual = primero;
 	while (actual != nullptr) {
-		f << actual->getPeriodo()->getNumPeriodo() << ","
-			<< actual->getPeriodo()->getInicio() << ","
-			<< actual->getPeriodo()->getFinal() << endl;
+		f << "Periodo numero " << actual->getPeriodo()->getNumPeriodo() << endl
+			<< "Mes de inicio: " << actual->getPeriodo()->getInicio() << endl
+			<< "Mes de finalizacion: " << actual->getPeriodo()->getFinal() << endl;
 
 		listaGrupos* grupos = actual->getPeriodo()->getlistaGrupos();
 		if (grupos != nullptr) {
-			f << grupos->mostrarLG() << endl;
+			f << grupos->mostrarLG();  
+		}
+
+		if (actual->getSig() != nullptr) {
+			f << "---------------------------"<<endl;
 		}
 
 		actual = actual->getSig();
@@ -102,38 +116,82 @@ void listaPeriodos::guardarEnArchivo(string nombreArchivo) {
 
 	f.close();
 }
+
+
 	
 
 void listaPeriodos::cargarDesdeArchivo(string nombreArchivo) {
-	ifstream f(nombreArchivo);  
-
-	if (!f.is_open()) { 
-		cerr << "No se encontro el archivo de datos. Comenzando con una lista vacia." << endl;
+	ifstream f(nombreArchivo);
+	if (!f.is_open()) {
+		cerr << "Error al abrir el archivo para cargar datos." << endl;
 		return;
 	}
 
 	string linea;
-	while (getline(f, linea)) {  
-		if (linea == "") {
-			continue;  
+	while (getline(f, linea)) {
+		if (linea.empty() || linea == "---------------------------") continue;
+
+		if (linea.find("Periodo numero") != string::npos) {
+			string numPeriodo, mesInicio, mesFinal;
+
+			numPeriodo = linea.substr(linea.find("numero") + 7); 
+
+			getline(f, linea);  
+			mesInicio = linea.substr(linea.find(":") + 1); 
+
+			getline(f, linea);  
+			mesFinal = linea.substr(linea.find(":") + 1); 
+
+			Periodo* periodo = new Periodo(numPeriodo, mesInicio, mesFinal);
+			insertarPeriodos(periodo);
+
+			while (getline(f, linea) && linea != "---------------------------") {
+				
+				if (linea.find("Numero de grupo:") != string::npos) {
+					int numGrupoStr = 0;
+					int capacidad = 0, cantidadAlumnos = 0;
+					string horaInicio, horaFin, diaSemana;
+
+					
+					getline(f, linea);  
+					numGrupoStr = stoi(linea.substr(linea.find(":") + 1));
+
+					
+					getline(f, linea); 
+					capacidad = stoi(linea.substr(linea.find(":") + 1));
+
+					
+					getline(f, linea);  
+					cantidadAlumnos = stoi(linea.substr(linea.find(":") + 1));
+
+					
+					getline(f, linea);  
+					horaInicio = linea.substr(linea.find(":") + 1);
+
+					
+					getline(f, linea);  
+					horaFin = linea.substr(linea.find(":") + 1);
+
+					
+					getline(f, linea);  
+					diaSemana = linea.substr(linea.find(":") + 1);
+
+					Horario h1(horaInicio, horaFin, diaSemana);
+
+					Grupo* grupo = new Grupo(numGrupoStr, capacidad);
+					grupo->setCantidadAlumnos(cantidadAlumnos);
+					grupo->setHorario(h1);
+
+					periodo->agregarGrupo(grupo);
+				}
+			}
 		}
-
-		stringstream s(linea);
-		string numPeriodo, mesInicio, mesFinal;
-
-		getline(s, numPeriodo, ',');  
-		getline(s, mesInicio, ',');  
-		getline(s, mesFinal, ','); 
-
-		//s << numPeriodo  << mesInicio  << mesFinal << endl;
-
-		Periodo* periodo = new Periodo(numPeriodo, mesInicio, mesFinal);
-
-		insertarPeriodos(periodo);  
 	}
 
-	f.close();  
+	f.close();
 }
+
+
 
 string listaPeriodos::mostrarPeriodosYGrupos() {
 	stringstream s;

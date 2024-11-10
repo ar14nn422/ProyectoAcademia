@@ -15,6 +15,7 @@ public:
 	Periodo* buscarPeriodoPorNum(string);
 	string mostrarLP();
 	~listaPeriodos();
+	bool existePeriodoNum(string);
 	void guardarEnArchivo(string);
 	void cargarDesdeArchivo(string);
 	string mostrarPeriodosYGrupos();

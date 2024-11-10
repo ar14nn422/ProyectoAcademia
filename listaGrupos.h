@@ -15,12 +15,14 @@ public:
 	string mostrarLG();
 	int cantidadCursos();
 	Grupo* buscarGrupoPorNumYCurso(int,string);
+	Grupo* seleccionarGrupoPorNumero(int);
 	bool existeProfesorEnGrupos(Profesor*);
 	void guardarEnArchivo(string);
-	void cargarDesdeArchivo(string);
-	string mostrarCursosYGruposPorProfesor(Profesor* profesor);
+	void cargarDesdeArchivo(string, listaEstu*);
+	string mostrarCursosYGruposPorProfesor(Profesor* );
 	string mostrarCursosYGrupos();
 	string mostrarGruposPorCurso(Curso*);
+	bool hayGruposConMismoNum(int);
 };
 #endif // !LISTAGRUPOS_H
 

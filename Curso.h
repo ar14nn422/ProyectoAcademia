@@ -28,6 +28,7 @@ public:
 	string getHoras();
 	int getPrecio();
 	bool getEstado();
+	void setSiguiente(Curso*);
 	Curso* getsiguiente();
 	string mostrarCurso();
 

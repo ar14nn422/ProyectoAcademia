@@ -77,6 +77,25 @@ string Periodo::mostrarGruposP()
 	return s.str();
 }
 
+string Periodo::mostrarGruposEstudiantePorPeriodo(Estudiante* estudiante, Periodo* periodo) {
+	stringstream s;
+	 
 
+	bool estaMatriculado = false;
+	Grupo* actualGrupo = periodo->getlistaGrupos()->getPrimero();  
+
+	while (actualGrupo != nullptr) {
+		if (actualGrupo->estaEstudianteMatriculado(estudiante)) {
+			s << "Grupo ID: " << actualGrupo->getNumeroGrupo() << " - " << actualGrupo->getCurso()->getNombre() << endl;
+			estaMatriculado = true;
+		}
+		actualGrupo = actualGrupo->getSiguiente();  
+	}
+
+	if (!estaMatriculado) {
+		s << "El estudiante no está matriculado en ningun grupo en este periodo." << endl;
+	}
+	return s.str();
+}
 
 

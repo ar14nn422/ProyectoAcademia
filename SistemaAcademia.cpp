@@ -32,9 +32,11 @@ void SistemaAcademia::mostrarMenu()
             subMenuAdministracion();
             break;
         case 2:
+            system("cls");
             subMenuMatricula();
             break;
         case 3:
+            system("cls");
             subMenuBusquedasInformes();
             break;
         case 4:
@@ -79,6 +81,7 @@ void SistemaAcademia::subMenuAdministracion()
             cin >> nombre;
             cout << "Ingrese el id: " << endl;
             cin >> id;
+            if (listaProfes->verificarDuplicadoProfesor(id) == false) {
             cout << "Ingrese el numero de telefono: " << endl;
             cin >> num;
             cout << "Ingrese el email: " << endl;
@@ -87,6 +90,11 @@ void SistemaAcademia::subMenuAdministracion()
             cin >> gradoAcademico;
             Profesor* profe = new Profesor(nombre, id, num, email, gradoAcademico);
             listaProfes->insertarProfesor(profe);
+            }
+            else {
+                cout << "Ya exixste un profesor con el id ingresado" << endl;
+            }
+
             system("pause");
         }
             break;
@@ -103,14 +111,20 @@ void SistemaAcademia::subMenuAdministracion()
             cin >> nombre;
             cout << "Ingrese el id: " << endl;
             cin >> id;
-            cout << "Ingrese el numero de telefono: " << endl;
-            cin >> num;
-            cout << "Ingrese el email: " << endl;
-            cin >> email;
-            cout << "Ingrese la especialidad: " << endl;
-            cin >> especialidad;
-            Estudiante* estu = new Estudiante(nombre, id, num, email, especialidad);
-            listaEst->insertarEstu(estu);
+            if (listaEst->verificarDuplicadoAlumno(id) == false) {
+              cout << "Ingrese el numero de telefono: " << endl;
+              cin >> num;
+              cout << "Ingrese el email: " << endl;
+              cin >> email;
+              cout << "Ingrese la especialidad: " << endl;
+              cin >> especialidad;
+              Estudiante* estu = new Estudiante(nombre, id, num, email, especialidad);
+              listaEst->insertarEstu(estu);
+            }
+            else {
+                cout << "Ya existe un alumno con este id" << endl;
+            }
+
             system("pause");
         }
             break;
@@ -120,15 +134,22 @@ void SistemaAcademia::subMenuAdministracion()
             system("cls");
             cout << "Ingrese el numero del periodo: " << endl;
             cin >> num;
-            cout << "Ingrese el mes en que inicia este periodo: " << endl;
-            cin>>mInicio;
-            cout << "Ingrese el mes en que finaliza el periodo: " << endl;
-            cin>>mFinal;
-            Periodo* per = new Periodo(num, mInicio, mFinal);
-            listaPer->insertarPeriodos(per);
+            if (listaPer->existePeriodoNum(num) == false) {
+              cout << "Ingrese el mes en que inicia este periodo: " << endl;
+              cin>>mInicio;
+              cout << "Ingrese el mes en que finaliza el periodo: " << endl;
+              cin>>mFinal;
+              Periodo* per = new Periodo(num, mInicio, mFinal);
+              listaPer->insertarPeriodos(per);
+              cout<<listaPer->mostrarLP();
+            }
+            else {
+                cout << "Ya existe el periodo " << num << endl;
+            }
+ 
+
             system("pause");
         }
-           // if (la cantidad de periodos es mayor a 4 mensaje que diga que ya no puede ingresar mas  );
             break;
         case 4:
         {
@@ -143,6 +164,7 @@ void SistemaAcademia::subMenuAdministracion()
             cin >> nombre;
             cout << "Ingrese el id: " << endl;
             cin >> id;
+            if (listaCursosTotal->verificarDuplicadoCurso(id) == false) {
             cout << "Ingrese la cantidad de horas: " << endl;
             cin >> horas;
             cout << "Ingrese el precio del curso: " << endl;
@@ -154,6 +176,11 @@ void SistemaAcademia::subMenuAdministracion()
 
             listaCursosTotal->insertarCurso(curs);
             cout << listaCursosTotal->mostrarLC();
+            }
+            else {
+                cout << "Ya exixte un curso con este id" << endl;
+            }
+
             system("pause");
             
 
@@ -204,6 +231,7 @@ void SistemaAcademia::subMenuAdministracion()
             int nGrupo;
             cout << "Ingrese el ID del profesor: " << endl;
             cin >> idProfesor;
+            cout<<listaG->mostrarLG();
             cout << "Ingrese el numero del grupo: " << endl;
             cin >> nGrupo;
             cout << "Ingrese el ID del curso: " << endl;
@@ -263,6 +291,7 @@ void SistemaAcademia::subMenuMatricula()
             Estudiante* estu = listaEst->buscarEstuPorId(idEstudiante);
             if (!estu) {
                 cout << "No se ha encontrado el estudiante: " << endl;
+                return;
             }
             cout << "Seleccione un periodo ingresando el numero: " << endl;
             cout << listaPer->mostrarLP();
@@ -343,9 +372,41 @@ void SistemaAcademia::subMenuMatricula()
         }
 
         case 2: {
-            
-            cout << "Funcionalidad para desmatricular estudiante.\n";
-           
+            string idEstu, numPeriodo, idCurso;
+            int nGrupo;
+            cout << "Ingrese el ID del estudiante a desmatricular: "<<endl;
+            cin >> idEstu;
+            Estudiante* estu = listaEst->buscarEstuPorId(idEstu);
+            cout << "Ingrese el periodo del cual desea ver los grupos: " << endl;
+            cin >> numPeriodo;
+            Periodo* per=listaPer->buscarPeriodoPorNum(numPeriodo);
+            cout<< per->mostrarGruposEstudiantePorPeriodo(estu,per);
+            cout << "Ingrese el numero de grupo que desmatriculara:" << endl;
+            cin >> nGrupo;
+            if (per->getlistaGrupos()->hayGruposConMismoNum(nGrupo)) {
+                cout << "Hay mas de un grupo con el mismo numero " << nGrupo << " Ingrese el ID del curso: " << endl;
+                cin >> idCurso;
+                Grupo* grupoSeleccionado = per->getlistaGrupos()->buscarGrupoPorNumYCurso(nGrupo, idCurso);
+                Curso* cursoSeleccionado = listaCursosTotal->buscarCursoPorId(idCurso);
+                if (grupoSeleccionado != nullptr) {
+                    grupoSeleccionado->desmatricularEstudiante(estu);
+                    cout << "Estudiante desmatriculado del grupo " << grupoSeleccionado->getNumeroGrupo() << " del curso " << cursoSeleccionado->getNombre() << endl;
+                    listaCursosEstu->eliminarCursoPorId(idCurso);
+                }
+                else {
+                    cout << "Grupo o curso no encontrado" << endl;
+                }
+            }
+            else {
+                Grupo* grupoSeleccionado = per->getlistaGrupos()->seleccionarGrupoPorNumero(nGrupo);
+                
+                if (grupoSeleccionado != nullptr) {
+                    grupoSeleccionado->desmatricularEstudiante(estu);
+                    cout << "Estudiante desmatriculado del grupo " << grupoSeleccionado->getNumeroGrupo();
+                    listaCursosEstu->eliminarCursoPorId(grupoSeleccionado->getCurso()->getId());
+                }
+            }
+            system("pause");
             break;
         }
 
@@ -366,7 +427,7 @@ void SistemaAcademia::cargarArchivos()
 {
    
         listaEst->cargarDesdeArchivo("Estudiantes.txt");
-        listaG->cargarDesdeArchivo("Grupos.txt");
+       // listaG->cargarDesdeArchivo("Grupos.txt");
         listaPer->cargarDesdeArchivo("Periodos.txt");
         listaCursosTotal->cargarDesdeArchivo("Cursos.txt");
         listaCursosEstu->cargarDesdeArchivo("CursosEstu.txt");
@@ -377,7 +438,7 @@ void SistemaAcademia::cargarArchivos()
 void SistemaAcademia::guardarArchivos()
 {
     listaEst->guardarEnArchivo("Estudiantes.txt");
-    listaG->guardarEnArchivo("Grupos.txt");
+  //  listaG->guardarEnArchivo("Grupos.txt");
     listaPer->guardarEnArchivo("Periodos.txt");
     listaCursosTotal->guardarEnArchivo("Cursos.txt");
     listaCursosEstu->guardarEnArchivo("CursosEstu.txt");
@@ -403,17 +464,15 @@ void SistemaAcademia::subMenuBusquedasInformes()
         switch (opcion) {
             system("cls");
         case 1: {
-            cout<<listaProfes->mostrarProfesoresSinGrupo(listaG) << endl;
+            cout<<listaProfes->mostrarLP() << endl;
             system("pause");
             break;
         }
 
         case 2: {
         
-           // cout <<listaEst->mostrarLE();
-           cout<< listaProfes->mostrarLP();//ponerle el resto de mostrar a los profesores
+            cout <<listaEst->mostrarLE();
             system("pause"); 
-            /////////////////////////////////////////////////////////////////////////////////////
 
             break;
         }

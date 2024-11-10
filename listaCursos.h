@@ -15,7 +15,11 @@ public:
 	Curso* getPrimero();
 	int cantidadCursos();
 	void insertarCurso(Curso*);
+	void eliminarCursoPorId(string);
 	Curso* buscarCursoPorId(string);
+	bool verificarDuplicadoCurso(string);
+	void guardarEnArchivo(string);
+	void cargarDesdeArchivo(string);
 	string mostrarLC();
 };
 #endif // !LISTACURSOS_H

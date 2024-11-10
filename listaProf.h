@@ -12,7 +12,7 @@ public:
 	Profesor* buscarProfePorId(string);
 	string mostrarLP();
 	~listaProf();
-	string mostrarProfesoresSinGrupo(listaGrupos*);
+	bool verificarDuplicadoProfesor(string);
 	void guardarEnArchivo(string);
 	void cargarDesdeArchivo(string);
 

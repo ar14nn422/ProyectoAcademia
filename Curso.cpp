@@ -98,6 +98,11 @@ bool Curso::getEstado()
 	return estado;
 }
 
+void Curso::setSiguiente(Curso* sig)
+{
+	siguiente = sig;
+}
+
 
 
 string Curso::mostrarCurso()

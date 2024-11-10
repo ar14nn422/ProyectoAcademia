@@ -60,21 +60,18 @@ listaProf::~listaProf()
 		delete actual;
 	}
 }
-string listaProf::mostrarProfesoresSinGrupo(listaGrupos* listaG) {
-	stringstream s;
-	actual=primero;  
-	s << "Profesores sin grupo asignado:\n";
 
+bool listaProf::verificarDuplicadoProfesor(string id) {
+	actual = primero;  
 	while (actual != nullptr) {
-		bool estaAsignado = listaG->existeProfesorEnGrupos(actual->getProfe());
-
-		if (!estaAsignado) {
-			s << "ID: " << actual->getProfe()->getId() << " - Nombre: " << actual->getProfe()->getNombre() << endl;
+		if (actual->getProfe()->getId() == id) {
+			return true;  
 		}
-		actual = actual->getSig();  
+		actual = actual->getSig(); 
 	}
-	return s.str();
+	return false;  
 }
+
 
 void listaProf::guardarEnArchivo(string nombreArchivo) {
 	ofstream f(nombreArchivo);

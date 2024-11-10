@@ -13,9 +13,12 @@ public:
 	listaEstu();
 	~listaEstu();
 	void insertarEstu(Estudiante*);
+	void eliminarEstudiante(Estudiante*);
 	nodoEstu* getPrimero();
+	void setPrimero(nodoEstu*);
 	string mostrarLE();
 	Estudiante* buscarEstuPorId(string);
+	bool verificarDuplicadoAlumno(string);
 	void guardarEnArchivo(string );
 	void cargarDesdeArchivo(string);
 };

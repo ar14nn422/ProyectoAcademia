@@ -24,6 +24,7 @@ public:
 	listaGrupos* getlistaGrupos();
 	string mostrarPeriodo();
 	string mostrarGruposP();
+	string mostrarGruposEstudiantePorPeriodo(Estudiante*, Periodo*);
 };
 #endif // !PERIODO_H
 
