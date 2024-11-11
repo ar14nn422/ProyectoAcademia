@@ -113,6 +113,104 @@ bool listaGrupos::existeProfesorEnGrupos(Profesor* profesor) {
     return false;  
 }
 
+void listaGrupos::guardarEnArchivo(string nombreArchivo) {
+    ofstream f(nombreArchivo);
+    if (!f.is_open()) {
+        cerr << "Error al abrir el archivo para guardar datos." << endl;
+        return;
+    }
+
+    actual = primero;
+    while (actual != nullptr) {
+        Grupo* grupo = actual->getGrupo(); 
+
+        f << "Numero de grupo: " << grupo->getNumeroGrupo() << endl
+            << "Capacidad: " << grupo->getCapacidad() << endl
+            << "Cantidad de alumnos: " << grupo->getCantidadAlumnos() << endl;
+
+        Horario horario = actual->getHorario();
+        f << "Hora de inicio: " << horario.getHoraInicio() << endl
+            << "Hora de fin: " << horario.getHoraFin() << endl
+            << "Dia de la semana: " << horario.getDiaSemana() << endl;
+
+        if (grupo->getCurso() != nullptr) {
+            f << "Curso: " << grupo->getCurso()->getId() << endl;  
+        }
+        else {
+            f << "Curso no asignado." << endl;
+        }
+
+        if (grupo->getProfesor() != nullptr) {
+            f << "Profesor: " << grupo->getProfesor()->mostrarProfe() << endl;
+        }
+        else {
+            f << "Profesor no asignado." << endl;
+        }
+
+        f << "---------------------------" << endl;
+
+        actual = actual->getSiguiente();
+    }
+
+    f.close();
+}
+
+
+void listaGrupos::cargarDesdeArchivo(string nombreArchivo) {
+    ifstream f(nombreArchivo);
+    if (!f.is_open()) {
+        cerr << "Error al abrir el archivo para cargar datos." << endl;
+        return;
+    }
+
+    string linea;
+    while (getline(f, linea)) {
+        if (linea.empty() || linea == "---------------------------") continue;
+
+        if (linea.find("Numero de grupo:") != string::npos) {
+            int numeroGrupo = stoi(linea.substr(linea.find(":") + 1));
+            int capacidad, cantidadAlumnos;
+            string horaInicio, horaFin, diaSemana;
+
+            getline(f, linea);
+            capacidad = stoi(linea.substr(linea.find(":") + 1));
+
+            getline(f, linea);
+            cantidadAlumnos = stoi(linea.substr(linea.find(":") + 1));
+
+            getline(f, linea);  
+            horaInicio = linea.substr(linea.find(":") + 1);
+
+            getline(f, linea);  
+            horaFin = linea.substr(linea.find(":") + 1);
+
+            getline(f, linea);  
+            diaSemana = linea.substr(linea.find(":") + 1);
+
+            Horario* horario = new Horario(horaInicio, horaFin, diaSemana);
+
+            Grupo* grupo = new Grupo(numeroGrupo, capacidad);
+            grupo->setCantidadAlumnos(cantidadAlumnos);
+            grupo->setHorario(*horario);
+
+            getline(f, linea);
+            if (linea.find("Profesor:") != string::npos) {
+                string nombreProfesor = linea.substr(linea.find(":") + 1);
+                Profesor* profesor = new Profesor(nombreProfesor); 
+                grupo->asignarProfesor(profesor);
+            }
+
+            insertarGrupo(grupo);
+        }
+    }
+
+    f.close();
+}
+
+
+
+
+
 
 string listaGrupos::mostrarCursosYGruposPorProfesor( Profesor* profesor) {//////
     stringstream s;

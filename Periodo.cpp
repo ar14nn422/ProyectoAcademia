@@ -20,6 +20,8 @@ Periodo::Periodo()
 
 Periodo::~Periodo()//
 {
+	delete grupos;
+	delete cursos;
 }
 
 string Periodo::getNumPeriodo()

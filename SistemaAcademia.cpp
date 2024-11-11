@@ -17,12 +17,12 @@ void SistemaAcademia::mostrarMenu()
     
     int opcion;
     do {
-        cout << "Menu Principal\n";
-        cout << "1- Submenu Administracion\n";
-        cout << "2- Submenu Matricula\n";
-        cout << "3- Submenu Busquedas e Informes\n";
-        cout << "4- Guardar los Datos en Archivos\n";
-        cout << "5- Salir\n";
+        cout << "Menu Principal"<<endl;
+        cout << "1- Submenu Administracion"<<endl;
+        cout << "2- Submenu Matricula"<<endl;
+        cout << "3- Submenu Busquedas e Informes"<<endl;
+        cout << "4- Guardar los Datos en Archivos"<<endl;
+        cout << "5- Salir"<<endl;
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
@@ -44,10 +44,10 @@ void SistemaAcademia::mostrarMenu()
             guardarArchivos();
             break;
         case 5:
-            cout << "Saliendo...\n";
+            cout << "Saliendo..."<<endl;
             break;
         default:
-            cout << "Opcion no valida. Intente de nuevo.\n";
+            cout << "Opcion no valida. Intente de nuevo."<<endl;
         }
         system("cls");
     } while (opcion != 5);
@@ -58,14 +58,14 @@ void SistemaAcademia::subMenuAdministracion()
     int opcion;
 
     do {
-        cout << "Submenu Administracion General\n";
-        cout << "(1) Ingresar Profesor\n";
-        cout << "(2) Ingresar Estudiante\n";
-        cout << "(3) Ingresar Bloque o Periodo\n";
-        cout << "(4) Ingresar Curso\n";
-        cout << "(5) Ingresar Grupo\n";
-        cout << "(6) Asignar Profesor a Grupo\n";
-        cout << "(0) Regresar al Menu Principal\n";
+        cout << "Submenu Administracion General"<<endl;
+        cout << "(1) Ingresar Profesor"<<endl;
+        cout << "(2) Ingresar Estudiante"<<endl;
+        cout << "(3) Ingresar Bloque o Periodo"<<endl;
+        cout << "(4) Ingresar Curso"<<endl;
+        cout << "(5) Ingresar Grupo"<<endl;
+        cout << "(6) Asignar Profesor a Grupo"<<endl;
+        cout << "(0) Regresar al Menu Principal"<<endl;
         cout << "Ingrese la opcion: ";
         cin >> opcion;
 
@@ -175,7 +175,7 @@ void SistemaAcademia::subMenuAdministracion()
             Curso* curs = new Curso(nombre, id, horas,precio,estado);
 
             listaCursosTotal->insertarCurso(curs);
-            cout << listaCursosTotal->mostrarLC();
+            cout << listaCursosTotal->mostrarLC();//
             }
             else {
                 cout << "Ya exixte un curso con este id" << endl;
@@ -207,20 +207,22 @@ void SistemaAcademia::subMenuAdministracion()
             cin>>numPeriodo;
 
             Curso* curso = listaCursosTotal->buscarCursoPorId(idCurso);
-            Periodo* periodo = listaPer->buscarPeriodoPorNum(numPeriodo);//
+            Periodo* periodo = listaPer->buscarPeriodoPorNum(numPeriodo);
            
 
             if (curso && periodo && curso->getEstado()==true) {
-                    Horario horario(dia, horaInicio, horaFin);
+                    Horario horario(horaInicio, horaFin, dia);
                     Grupo* grupo = new Grupo(numG,capacidad,horario,curso);
+                    grupo->setCurso(curso);
                     periodo->agregarGrupo(grupo);
                     listaG->insertarGrupo(grupo);
-                    cout << "Grupo ingresado.\n";
+                    cout << "Grupo ingresado."<<endl;            
+                    cout << listaG->mostrarLG() << endl;//
                 }
             else {
                    cout << "Curso y/o Periodo no encontrados o Curso no disponible."<<endl;
                 }
-            cout << listaG->mostrarLG() << endl;//
+
            
             system("pause");
         }
@@ -262,7 +264,7 @@ void SistemaAcademia::subMenuAdministracion()
         case 0:
             return;
         default:
-            cout << "Opcion no valida. Intente de nuevo.\n";
+            cout << "Opcion no valida. Intente de nuevo."<<endl;
         }
         system("cls");
     } while (opcion != 0);
@@ -273,10 +275,10 @@ void SistemaAcademia::subMenuMatricula()
     int opcion;
 
     do {
-        cout << "Submenu Matricula\n";
-        cout << "(1) Matricular Estudiante\n";
-        cout << "(2) Desmatricular Estudiante\n";
-        cout << "(0) Regresar al Menu Principal\n";
+        cout << "Submenu Matricula"<<endl;
+        cout << "(1) Matricular Estudiante"<<endl;
+        cout << "(2) Desmatricular Estudiante"<<endl;
+        cout << "(0) Regresar al Menu Principal"<<endl;
         cout << "Ingrese la opcion: ";
         cin >> opcion;
 
@@ -297,10 +299,10 @@ void SistemaAcademia::subMenuMatricula()
             cout << listaPer->mostrarLP();
 
             cin >> numeroPeriodo;
-            
+
             Periodo* periodo = listaPer->buscarPeriodoPorNum(numeroPeriodo);
             if (periodo == nullptr) {
-                cout << "Periodo no encontrado.\n";
+                cout << "Periodo no encontrado."<<endl;
                 return;
             }
 
@@ -314,7 +316,7 @@ void SistemaAcademia::subMenuMatricula()
                 system("pause");
                 return;
             }
-            
+
             cout << matricular->mostrarGruposPorCursoYPeriodo(periodo, curso) << endl;
 
             cout << "Ingrese el numero del grupo al que desea matricularse: ";
@@ -346,13 +348,13 @@ void SistemaAcademia::subMenuMatricula()
                 listaM->insertarMatricula(nuevaMatricula);
                 listaCursosEstu->insertarCurso(curso);
                 cout << "El estudiante " << estu->getNombre() << " ha sido matriculado en el grupo "
-                     << grupo->getNumeroGrupo() << " del curso " << curso->getNombre() << "." << endl<<endl;
-                
+                    << grupo->getNumeroGrupo() << " del curso " << curso->getNombre() << "." << endl << endl;
+
                 cout << "Si DESEA la factura del estudiante ingrese 1 si NO LA DESEA ingrese 0: " << endl;
                 cin >> nFactura;
                 if (nFactura == 1) {
-                Factura* facturaEstudiante = new Factura(estu,listaPer,listaCursosEstu);
-                cout << facturaEstudiante->mostrarFactura();
+                    Factura* facturaEstudiante = new Factura(estu, listaPer, listaCursosEstu);
+                    cout << facturaEstudiante->mostrarFactura();
                 }
                 else {
                     break;
@@ -374,13 +376,21 @@ void SistemaAcademia::subMenuMatricula()
         case 2: {
             string idEstu, numPeriodo, idCurso;
             int nGrupo;
-            cout << "Ingrese el ID del estudiante a desmatricular: "<<endl;
+            cout << "Ingrese el ID del estudiante a desmatricular: " << endl;
             cin >> idEstu;
             Estudiante* estu = listaEst->buscarEstuPorId(idEstu);
+            if (!estu) {
+                cout << "El estudiante no se ha encontrado" << endl;
+                return;
+            }
             cout << "Ingrese el periodo del cual desea ver los grupos: " << endl;
             cin >> numPeriodo;
-            Periodo* per=listaPer->buscarPeriodoPorNum(numPeriodo);
-            cout<< per->mostrarGruposEstudiantePorPeriodo(estu,per);
+            Periodo* per = listaPer->buscarPeriodoPorNum(numPeriodo);
+            if (!per) {
+                cout << "El periodo no fue encontrado" << endl;
+                return;
+            }
+            cout << per->mostrarGruposEstudiantePorPeriodo(estu, per);
             cout << "Ingrese el numero de grupo que desmatriculara:" << endl;
             cin >> nGrupo;
             if (per->getlistaGrupos()->hayGruposConMismoNum(nGrupo)) {
@@ -399,7 +409,7 @@ void SistemaAcademia::subMenuMatricula()
             }
             else {
                 Grupo* grupoSeleccionado = per->getlistaGrupos()->seleccionarGrupoPorNumero(nGrupo);
-                
+
                 if (grupoSeleccionado != nullptr) {
                     grupoSeleccionado->desmatricularEstudiante(estu);
                     cout << "Estudiante desmatriculado del grupo " << grupoSeleccionado->getNumeroGrupo();
@@ -414,20 +424,20 @@ void SistemaAcademia::subMenuMatricula()
             return;
 
         default:
-            cout << "Opcion no valida. Intente de nuevo.\n";
-            break; 
+            cout << "Opcion no valida. Intente de nuevo."<<endl;
+            break;
         }
 
-        system("cls"); 
+        system("cls");
 
     } while (opcion != 0);
 }
 
 void SistemaAcademia::cargarArchivos()
 {
-   
+    system("cls");
         listaEst->cargarDesdeArchivo("Estudiantes.txt");
-       // listaG->cargarDesdeArchivo("Grupos.txt");
+        listaG->cargarDesdeArchivo("Grupos.txt");
         listaPer->cargarDesdeArchivo("Periodos.txt");
         listaCursosTotal->cargarDesdeArchivo("Cursos.txt");
         listaCursosEstu->cargarDesdeArchivo("CursosEstu.txt");
@@ -437,8 +447,9 @@ void SistemaAcademia::cargarArchivos()
 
 void SistemaAcademia::guardarArchivos()
 {
+    system("cls");
     listaEst->guardarEnArchivo("Estudiantes.txt");
-  //  listaG->guardarEnArchivo("Grupos.txt");
+    listaG->guardarEnArchivo("Grupos.txt");
     listaPer->guardarEnArchivo("Periodos.txt");
     listaCursosTotal->guardarEnArchivo("Cursos.txt");
     listaCursosEstu->guardarEnArchivo("CursosEstu.txt");
@@ -450,15 +461,15 @@ void SistemaAcademia::subMenuBusquedasInformes()
     int opcion;
 
     do {
-        cout << "Busquedas e Informes\n";
-        cout << "(1) Informe profesores regristrados\n";
-        cout << "(2) Informe estudiantes registrados\n";
-        cout << "(3) Informes cursos matriculados por un estudiante\n";
-        cout << "(4) Informe profesor especifico\n";
-        cout << "(5) Informe periodos habilitados para el anno\n";
-        cout << "(6) Informe grupo especifico\n";
-        cout << "(0) Regresar al Menu Principal\n";
-        cout << "Ingrese la opcion: ";
+        cout << "Busquedas e Informes"<<endl;
+        cout << "(1) Informe profesores regristrados"<<endl;
+        cout << "(2) Informe estudiantes registrados"<<endl;
+        cout << "(3) Informes cursos matriculados por un estudiante"<<endl;
+        cout << "(4) Informe profesor especifico"<<endl;
+        cout << "(5) Informe periodos habilitados para el anno"<<endl;
+        cout << "(6) Informe grupo especifico"<<endl;
+        cout << "(0) Regresar al Menu Principal"<<endl;
+        cout << "Ingrese la opcion: "<<endl;
         cin >> opcion;
 
         switch (opcion) {
@@ -482,7 +493,7 @@ void SistemaAcademia::subMenuBusquedasInformes()
             cout << "Ingrese el ID del estudiante: " << endl;
             cin >> idEstudiante;
             Estudiante* estu = listaEst->buscarEstuPorId(idEstudiante);
-            cout<<listaCursosEstu->mostrarLC();//me falta lo de numero de grupo matriculado
+            cout<<listaCursosEstu->mostrarLC();
             system("pause");
         }
             break;
@@ -492,16 +503,14 @@ void SistemaAcademia::subMenuBusquedasInformes()
             cout << "Ingrese el ID del profesor del que desea el informe: " << endl;
             cin >> idProfe;
             Profesor* profe = listaProfes->buscarProfePorId(idProfe);
-            //cout<<listaPer->mostrarCursosYGruposPorProfesor(profe);
             cout<<listaG->mostrarCursosYGruposPorProfesor(profe)<<endl;
-            //falta que se vean los periodos
             system("pause");
            
         }
               break;
         case 5: {
             system("cls");
-            cout<<listaPer->mostrarPeriodosYGrupos();//probar bien
+            cout<<listaPer->mostrarPeriodosYGrupos();
             system("pause");
         }
               break;
@@ -523,7 +532,6 @@ void SistemaAcademia::subMenuBusquedasInformes()
             
             Grupo* grupoSeleccionado = listaG->buscarGrupoPorNumYCurso(numGrupo, idCurso);
             if (grupoSeleccionado != nullptr) {
-                //NO MUESTRA LA CANTIDAD DE ESTUDIANTES NI LA LISTA DE ESTUDIANTES SOLO EL RESTO DE LA INFORMACIÓN
             }
 
             system("pause");

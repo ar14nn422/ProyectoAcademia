@@ -16,33 +16,40 @@ private:
     int cantidadAlumnos;
     Horario horario;
     Curso* curso;
+    string idCurso;
     listaEstu* listaEstudiantes;
     Profesor* profesor;
     Grupo* siguiente;
 public:
     Grupo(int , int , Horario ,Curso* );
+    Grupo(int, int);
     Grupo();
     ~Grupo();
 
     int getNumeroGrupo();
     int getCapacidad();
     int getCantidadAlumnos();
+    void setCantidadAlumnos(int);
     Horario getHorario();
+    void setHorario(Horario&);
     Profesor* getProfesor();
+    void setProfesor(Profesor*);
     listaEstu* getListaEstu();
+    Grupo* getGrupo();
 
     bool incrementarAlumnos();
     void decrementarAlumnos();
     bool matricularEstudiante(Estudiante*);
+    bool desmatricularEstudiante(Estudiante*);
     string mostrarEstudiantes();
     bool asignarProfesor(Profesor*);
     Curso* getCurso();
+    void setCurso(Curso*);
     Grupo* getSiguiente();
     void setSiguiente(Grupo*);
     string mostrarGrupo();
-    bool estaEstudianteMatriculado(Estudiante*, Curso*);
-    void guardarEnArchivo(const string& nombreArchivo);
-    void cargarDesdeArchivo(const string& nombreArchivo);
+    bool estaEstudianteMatriculadoCurso(Estudiante*, Curso*);
+    bool estaEstudianteMatriculado(Estudiante* estudiante);
 };
 
 

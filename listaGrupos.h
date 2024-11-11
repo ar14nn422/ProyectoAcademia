@@ -18,7 +18,7 @@ public:
 	Grupo* seleccionarGrupoPorNumero(int);
 	bool existeProfesorEnGrupos(Profesor*);
 	void guardarEnArchivo(string);
-	void cargarDesdeArchivo(string, listaEstu*);
+	void cargarDesdeArchivo(string);
 	string mostrarCursosYGruposPorProfesor(Profesor* );
 	string mostrarCursosYGrupos();
 	string mostrarGruposPorCurso(Curso*);
