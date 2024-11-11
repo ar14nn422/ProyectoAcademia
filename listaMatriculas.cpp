@@ -37,6 +37,40 @@ void listaMatriculas::insertarMatricula(Matricula* nuevaMatricula)
 	}
 }
 
+
+Matricula* listaMatriculas::buscarMatriculaPorEstudianteYCurso(Estudiante* estu, Curso* curso) {
+	actual = primero; 
+	while (actual != nullptr) {
+		if (actual->getMatricula()->getEstudiante() == estu && actual->getMatricula()->getCurso() == curso) {
+			return actual->getMatricula();  
+		}
+		actual = actual->getSig(); 
+	}
+	return nullptr;  
+}
+
+
+void listaMatriculas::eliminarMatricula(Matricula* matricula) {
+	actual = primero;     
+	nodoMatricula* anterior = nullptr;   
+
+	while (actual != nullptr) {
+		if (actual->getMatricula() == matricula) {  
+			if (anterior == nullptr) {  
+				primero = actual->getSig();  
+			}
+			else {
+				anterior->setSig(actual->getSig());  
+			}
+			delete actual;  
+			return;  
+		}
+		anterior = actual;  
+		actual = actual->getSig();
+	}
+}
+
+
 Matricula* listaMatriculas::getPrimero()
 {
 	return primero->getMatricula();

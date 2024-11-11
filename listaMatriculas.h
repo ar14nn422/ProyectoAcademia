@@ -9,6 +9,8 @@ public:
 	listaMatriculas();
 	~listaMatriculas();
 	void insertarMatricula(Matricula*);
+	Matricula* buscarMatriculaPorEstudianteYCurso(Estudiante*, Curso*);
+	void eliminarMatricula(Matricula*);
 	Matricula* getPrimero();
 	string mostrarListaMatriculas();
 	bool validarMatriculaCurso(Estudiante*, Curso*);

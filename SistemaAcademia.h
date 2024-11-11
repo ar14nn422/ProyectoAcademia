@@ -4,7 +4,6 @@
 #include "listaGrupos.h"
 #include "listaPeriodos.h"
 #include "listaProf.h"
-#include "PersistenciaDatos.h"
 #include "Matricula.h"
 #include "listaMatriculas.h"
 #include "Factura.h"
@@ -20,7 +19,6 @@ private:
     listaGrupos* listaG;
     listaMatriculas* listaM;
     Matricula* matricular;
-  //  PersistenciaDatos persistencia;
 public:
     SistemaAcademia();
     void mostrarMenu();
@@ -29,5 +27,6 @@ public:
     void cargarArchivos();
     void guardarArchivos();
     void subMenuBusquedasInformes();
+    ~SistemaAcademia();
 };
 

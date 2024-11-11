@@ -400,6 +400,14 @@ void SistemaAcademia::subMenuMatricula()
                 Curso* cursoSeleccionado = listaCursosTotal->buscarCursoPorId(idCurso);
                 if (grupoSeleccionado != nullptr) {
                     grupoSeleccionado->desmatricularEstudiante(estu);
+                    Matricula* matriculaAEliminar = listaM->buscarMatriculaPorEstudianteYCurso(estu, cursoSeleccionado);
+                    if (matriculaAEliminar) {
+                        listaM->eliminarMatricula(matriculaAEliminar); 
+                        cout << "Matrícula eliminada de la lista de matriculas" << endl;
+                    }
+                    else {
+                        cout << "No se encontro matrícula para este estudiante en este curso." << endl;
+                    }
                     cout << "Estudiante desmatriculado del grupo " << grupoSeleccionado->getNumeroGrupo() << " del curso " << cursoSeleccionado->getNombre() << endl;
                     listaCursosEstu->eliminarCursoPorId(idCurso);
                 }
@@ -412,6 +420,7 @@ void SistemaAcademia::subMenuMatricula()
 
                 if (grupoSeleccionado != nullptr) {
                     grupoSeleccionado->desmatricularEstudiante(estu);
+
                     cout << "Estudiante desmatriculado del grupo " << grupoSeleccionado->getNumeroGrupo();
                     listaCursosEstu->eliminarCursoPorId(grupoSeleccionado->getCurso()->getId());
                 }
@@ -549,5 +558,17 @@ void SistemaAcademia::subMenuBusquedasInformes()
 
    
 
+}
+
+SistemaAcademia::~SistemaAcademia()
+{
+    delete listaCursosEstu;
+    delete listaCursosTotal;
+    delete listaEst;
+    delete listaG;
+    delete listaPer;
+    delete listaProfes;
+    delete matricular;
+    delete listaM;
 }
 
