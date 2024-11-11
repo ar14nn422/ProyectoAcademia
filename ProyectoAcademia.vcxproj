@@ -145,7 +145,6 @@
     <ClInclude Include="nodoPeriodo.h" />
     <ClInclude Include="nodoProf.h" />
     <ClInclude Include="Periodo.h" />
-    <ClInclude Include="PersistenciaDatos.h" />
     <ClInclude Include="Persona.h" />
     <ClInclude Include="Profesor.h" />
     <ClInclude Include="SistemaAcademia.h" />
@@ -169,7 +168,6 @@
     <ClCompile Include="nodoPeriodo.cpp" />
     <ClCompile Include="nodoProf.cpp" />
     <ClCompile Include="Periodo.cpp" />
-    <ClCompile Include="PersistenciaDatos.cpp" />
     <ClCompile Include="Persona.cpp" />
     <ClCompile Include="Profesor.cpp" />
     <ClCompile Include="SistemaAcademia.cpp" />
